@@ -22,6 +22,34 @@
   {\normalfont\scshape}}
 \makeatother
 
+\setcounter{tocdepth}{3}
+\makeatletter
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+%Make Chapter disapear in ToC
+\renewcommand\tocchapter[3]{%
+  \indentlabel{\@ifnotempty{#2}{\ignorespaces#2.\quad}}#3%
+}
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+    \nobreak
+    \hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+    \nobreak
+    \endgroup
+  \fi}
+
 \title{Git Instruction Manual}
 \author{Evan Bergeron\\
 Frederick Lee\\
@@ -33,90 +61,41 @@ Nishad Gothoskar}
 \begin{document}
 \maketitle
 
+\tableofcontents
 \section*{Introduction}
 
 This is a manual on how to set up Git on your computer and set up a basic Git workflow. The document covers installing and setting up Git and how to work with Git. The majority of this document is primarily intended for users who want to learn Git to use it in a fast-paced setting such as a hackathon, this document is also useful as a reference for experienced Git users who want to refer to some specifc concept or command which they need.
 
-\newpage
-
-\section*{Contents}
-
-% When you are done with a section, remove the TODO and put the page number instead
-
-\subsection*{Table of Contents}
-\begin{center}
-	\begin{tabular}{ll}
-		Topic & Page Number\\
-		\hline
-		What is Git? & TODO\\
-		Installing Git & TODO \\
-		Initializing repository & TODO\\
-		Adding files to version control & TODO\\
-		Committing changes & TODO\\
-		Reverting changes & TODO\\
-		Branching & TODO\\
-		Merging branches & TODO\\
-		Ignoring files & TODO\\
-		Rebasing & TODO\\
-		Cherrypicking & TODO\\
-		Collaboration with GitHub & TODO\\
-		General workflows & TODO\\
-		Vim workflows & TODO\\
-
-	\end{tabular}
-\end{center}
-
-\newpage
-
 \section*{What is Git}
-
-\newpage
 
 \section*{Initializing Repository}
 
-\newpage
-
 \section*{Adding files to version control}
-
-\newpage
 
 \section*{Committing changes}
 
-\newpage
-
 \section*{Reverting changes}
-
-\newpage
 
 \section*{Branching}
 
-\newpage
-
 \section*{Merging Branches}
-
-\newpage
 
 \section*{Ignoring Files}
 
-\newpage
-
 \section*{Rebasing}
-
-\newpage
 
 \section*{Cherrypicking}
 
-\newpage
-
 \section*{Collaboration with Github}
-
-\newpage
 
 \section*{General workflows}
 
 \subsection*{Easily Reordering Commits}
 
-We’ve all been there. You pull from master, take several minutes to clean up the various merge conflicts, and then are ready to push. You pull one last time before pushing, and what do you know - someone has pushed again in the last couple minutes.
+We’ve all been there. You pull from master, take several minutes to
+clean up the various merge conflicts, and then are ready to push. You
+pull one last time before pushing, and what do you know - someone has
+pushed again in the last couple minutes.
 
 Previously, my workflow for this situation would look something like
 \begin{verbatim}
