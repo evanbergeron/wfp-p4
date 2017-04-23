@@ -7,6 +7,7 @@
 \usepackage{bussproofs}
 \usepackage{pgf, tikz}
 \usetikzlibrary{arrows, automata}
+\usepackage{hyperref}
 
 \fvset{%
   fontsize=\small,
@@ -24,10 +25,11 @@
 
 \title{Git Instruction Manual}
 \author{Evan Bergeron\\
-Frederick Lee\\
-Ziyang Wang\\
 Sunny Gakhar\\
-Nishad Gothoskar}
+Nishad Gothoskar\\
+Frederick Lee\\
+Ziyang Wang
+}
 
 
 \begin{document}
@@ -70,9 +72,67 @@ This is a manual on how to set up Git on your computer and set up a basic Git wo
 
 \section*{What is Git}
 
+Git is a version control system designed to be used for working on small and large projects.
+
+\subsection*{Motivation}
+When you were in school and you had short homework assignments, you would just start them and finish them in a short span of time (not longer than a week). But when you move on to designing and working on bigger projects, there are multiple issues that come into play. Say you are participating in a hackathon and have finalized your idea and distribution of work among the teammates. How do you actually work on the project together. Having all of them work on one computer is not optimal. You might have each teammate work on his own piece independently, but how do you merge everyone's work? Moreover, what if two or more teammates work on the same file, but do different modifications unknown to the others? And what if someone wants to explore a different direction to work on, while keeping the original work intact? Enter Git.
+
+\newpage
+
+\section*{Installing Git}
+
+\subsection*{Windows}
+If you have Windows, one easy way of installing Git is from this website:
+
+\url{https://git-scm.com/download/win}
+
+Once you have downloaded the installation file, you can run it and proceed through the installation steps.
+
+\subsection*{Mac}
+
+Similar to Windows, one way of installing Git on is from this link
+
+\url{https://git-scm.com/download/mac}
+
+\subsection*{Linux}
+
+If you're working on Linux, you can install Git using a basic package management tool that comes with your distribution.
+
+For example, for ubuntu, you have
+
+\verb|apt-get install git|
+
+or for Arch Linux, you have
+
+\verb|pacman -S git|
+
+Here 
 \newpage
 
 \section*{Initializing Repository}
+
+To make sure you have Git set up, type \verb|git| into your console and the following should show up.
+
+\begin{verbatim}
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+[--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+[-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+[--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+<command> [<args>]
+
+...
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+\end{verbatim}
+
+To start a new repository, type \verb|git init| into the console. It should output the following
+
+\begin{verbatim}
+Initialized empty Git repository in <path to current directory>/.git/
+\end{verbatim}
+
 
 \newpage
 
