@@ -126,17 +126,49 @@ $ git reset --hard HEAD~
 $ git cherry-pick tmp
 \end{verbatim}
 
-This works fine, but there’s a much easier way -- one that involves very little typing. We can simply say
+This works fine, but there’s a much easier way -- one that involves
+very little typing. We can simply say
 \[
   \texttt{git rebase -i HEAD~2}
 \]
-This will open an interactive git rebasing session (the \texttt{-i} stands for interactive). The window will display something along the lines of
+This will open an interactive git rebasing session (the \texttt{-i}
+stands for interactive). The window will display something along the
+lines of
 \begin{verbatim}
 pick 370e221 Commit one
 pick c342396 Commit two
 \end{verbatim}
-In whichever text editor we’re in, we may simply reorder these lines to reorder the commits. Much shorter!
+In whichever text editor we’re in, we may simply reorder these lines
+to reorder the commits. Much shorter!
 
 \section*{Vim workflows}
+
+At the time of writing, perhaps the most feature complete vim-git
+plugin is Tim Pope’s “vim-fugitive.” Consequently, we will assume
+usage of this plugin throughout the entire vim workflows tutorial.
+
+\subsection*{Installing vim-fugitive}
+
+There are a number of ways to install vim-fugitive. The one suggested
+by Tim Pope is as follows:
+\begin{verbatim}
+$ cd ~/.vim/bundle
+$ git clone git://github.com/tpope/vim-fugitive.git
+$ vim -u NONE -c "helptags vim-fugitive/doc" -c q
+\end{verbatim}
+Vundle is a great plugin manager for vim -- if you use this, you may
+simply add the line
+\[
+  \texttt{Plugin 'tpope/vim-fugitive}
+\]
+to your vimrc and run the \texttt{PluginInstall} command.
+
+\section*{Emacs workflows}
+
+Similarly to vim-fugitive for vim, “Magit” is (at the time of
+writing), the most feature-complete git wrapper for emacs. We will
+thus assume usage of this package.
+
+\subsection*{Installing Magit}
 
 \end{document}
