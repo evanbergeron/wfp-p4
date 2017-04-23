@@ -178,6 +178,21 @@ simply add the line
 \]
 to your vimrc and run the \texttt{PluginInstall} command.
 
+\subsection*{Easy git blame}
+You’re browsing some file and discover a horrible bug written by one
+of your coworkers. You’re about to storm over to someone’s desk and
+verbally abuse them for producing incorrect code. Before you deliver
+your diatribe, you need to know who to blame.
+
+Before using \texttt{vim-fugitive}, you would have to exit vim,
+manually type “\texttt{git blame <filename>},” and then search for the
+relevant line in the output. Now, you can simply type
+“\texttt{:Gblame}” in your vim prompt, and a vertical split will open
+up right next to the line in question. You could even establish a
+keybinding to do this for you! What was once several lines of typing
+is now a single keystroke away! Your coworkers have never been so
+scared\ldots
+
 \section*{Emacs workflows}
 
 Similarly to vim-fugitive for vim, “Magit” is (at the time of
