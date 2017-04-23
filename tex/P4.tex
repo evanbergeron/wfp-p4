@@ -114,7 +114,28 @@ This is a manual on how to set up Git on your computer and set up a basic Git wo
 
 \section*{General workflows}
 
-\newpage
+\subsection*{Easily Reordering Commits}
+
+We’ve all been there. You pull from master, take several minutes to clean up the various merge conflicts, and then are ready to push. You pull one last time before pushing, and what do you know - someone has pushed again in the last couple minutes.
+
+Previously, my workflow for this situation would look something like
+\begin{verbatim}
+$ git checkout -b tmp
+$ git checkout master
+$ git reset --hard HEAD~
+$ git cherry-pick tmp
+\end{verbatim}
+
+This works fine, but there’s a much easier way -- one that involves very little typing. We can simply say
+\[
+  \texttt{git rebase -i HEAD~2}
+\]
+This will open an interactive git rebasing session (the \texttt{-i} stands for interactive). The window will display something along the lines of
+\begin{verbatim}
+pick 370e221 Commit one
+pick c342396 Commit two
+\end{verbatim}
+In whichever text editor we’re in, we may simply reorder these lines to reorder the commits. Much shorter!
 
 \section*{Vim workflows}
 
