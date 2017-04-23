@@ -144,6 +144,18 @@ Once you’re sure that you’re good to go, just commit your changes as
 normal. You can repeat this process for the remaining changes. (Or
 just do a normal \texttt{git add} at this point).
 
+\subsection*{Git aliases}
+Git aliases are a good way to save yourself a lot of typing. I
+frequently want to see the git commit history, but don’t especially
+care about the body of each commit. Here’s the command I’ve added to
+my configuration:
+\[
+  \texttt{git config --global alias.l "log --oneline"}
+\]
+I can then just type “\texttt{git l}” to see a one line log of this
+commit history. If there are several long commands you use frequently,
+this can be a great way to save yourself some time.
+
 \section*{Vim workflows}
 
 At the time of writing, perhaps the most feature complete vim-git
