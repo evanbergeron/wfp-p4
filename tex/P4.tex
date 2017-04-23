@@ -120,6 +120,30 @@ pick c342396 Commit two
 In whichever text editor we’re in, we may simply reorder these lines
 to reorder the commits. Much shorter!
 
+\subsection*{Adding partial files}
+I just used this, actually. Suppose you’ve changed a single file
+\texttt{foo.c} in different sections, and each of these changes are
+logically different. For instance, maybe you refactor some function
+\texttt{foo}, while at the same time fixing a bug in function
+\texttt{bar}. Rather than create a separate branch and manaully edit
+the files, we can simply say
+\[
+  \texttt{git add -p foo.c}
+\]
+This will bring up an interactive prompt. It will automatically cycle
+through all the different areas of the diff, asking you if you want to
+stage each section. You may hit \texttt{y} or \texttt{n} for yes or
+no.
+
+Once you’re done adding the subset of changes you want to commit, you
+can double-check you have the right changes staged by saying
+\[
+  \texttt{git diff --cached}
+\]
+Once you’re sure that you’re good to go, just commit your changes as
+normal. You can repeat this process for the remaining changes. (Or
+just do a normal \texttt{git add} at this point).
+
 \section*{Vim workflows}
 
 At the time of writing, perhaps the most feature complete vim-git
