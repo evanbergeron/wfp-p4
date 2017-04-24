@@ -200,7 +200,76 @@ This creates a \verb|./git| directory in your current directory, which consists 
 
 \section*{Branching}
 
+In git, branching is used to keep track of the different paths of development for your project.  The master branch is the main branch of your project and after features or changes are verified, they are usually added to the master branch of the project.
+
+To create a new branch (for example if you want a new branch named addfeature):
+\begin{verbatim}
+$ git branch add_feature
+\end{verbatim}
+	
+This creates a new branch in the “development tree”.  Now you can work on this branch of the project without effecting the master branch.
+
+
+As the figure above shows, branching creates a separate flow.  Now in order to bring your current local state to that branch you will have to check it out by:
+
+\begin{verbatim}
+$ git checkout add_feature
+\end{verbatim}	
+
+Now the changes you make will be modifying this new branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than addfeature.
+
+Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
+
+A simple shortcut is to run:
+
+\begin{verbatim}
+$ git checkout -b add_feature
+\end{verbatim}	
+
+Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
+
+Now when you are done with development you can delete your branch by using:
+
+\begin{verbatim}
+$ git branch -d add_feature
+\end{verbatim}	
+
+If you want to rollback and see the state of your project at some previous point, you can use git log to look at the commit history and find the commit hash 
+
+ 
+
+and use:
+
+\begin{verbatim}
+$ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
+\end{verbatim}	
+
+To checkout the previous commit and see the state of the project at that point.
+
 \section*{Merging Branches}
+
+Now after working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added.  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
+
+\begin{verbatim}
+$ git checkout master
+\end{verbatim}	
+
+And then merging the other branch in by:
+
+\begin{verbatim}
+$ git merge add_feature
+\end{verbatim}	
+This may happen immediately, unless there are conflicts between the two branches that need to be resolved before they can be successfully merged.  By using git status, you can see in which files these conflicts are located.  Then within the files you will find sections of the form:
+
+\begin{verbatim}
+<<<<< HEAD
+stuff in the current branch
+=====
+things in other branch
+>>>>> add_feature
+\end{verbatim}	
+
+And you will have to replace these sections with the content you want and then commit the changes to fully process the merge of the two branches.
 
 \newpage
 \section*{Ignoring Files}
@@ -317,6 +386,14 @@ where commit ``E" has been applied to the master branch from your feature branch
 
 \newpage
 \section*{Collaboration with Github}
+
+You can use github for a more user-friendly version controlling experience.  Almost everything you can do using the command line can be done using the desktop client.  You can easily select files, read their diffs, and commit them.
+ 
+
+Using the online interface, you can create repositories, add contributors, and track progress very easily.
+
+The workflow using github usually involves many collaborators who make pull requests to the managers of the repository.
+
 
 \section*{General workflows}
 
