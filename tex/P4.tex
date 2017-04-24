@@ -194,9 +194,99 @@ This creates a \verb|./git| directory in your current directory, which consists 
 
 \section*{Adding files to version control}
 
+The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \texttt{git add} command is used for adding files to the staging environment.
+
+For example, after creating a \texttt{test.txt} file in your working directory, you can check the current status using \texttt{git status} command. You should get the following message:
+
+\begin{verbatim}
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  
+    test.txt
+
+nothing added to commit but untracked files present
+(use "git add" to track)
+\end{verbatim}
+
+In order to add the file to the staging environment and notify git for this change, type \texttt{git add test.txt} and check status. You should get the following message:
+
+\begin{verbatim}
+$ git add test.txt
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+  
+    New file: test.txt
+
+\end{verbatim}
+
+Now the new file is ready for commit, i.e. ready to be added to the git repository.
+
+If the file you want to add is not in the working directory, use \texttt{git add <pathspec>} instead to add the file to the staging environment.
+
+\newpage
+
 \section*{Committing changes}
 
+A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \texttt{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
+
+For example, if you changed some contents in the file \texttt{index.html} and created a new file \texttt{new.txt}, a commit message should look like something as following:
+
+\begin{verbatim}
+$ git commit -m "Change index, add new file"
+[master 3651e36] Change index, add new file
+2 files changed, 10 insertions(+)
+create mode 100644 new.txt
+\end{verbatim}
+
+The \texttt{"-m"} flag allows you to give a message without opening a text editor. Alternatively, using \texttt{git commit} will open your text editor with some message like the following:
+
+\begin{verbatim}
+$ git commit
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+# new file:   new.txt
+# modified:   index.html
+#
+~
+~
+~
+".git/COMMIT_EDITMSG" 9L, 283C
+\end{verbatim}
+
+
+It is worth noting that anything that is still unstaged (files you have created or modified that you haven’t run git add on since you edited them) won’t go into the commit. 
+
+Creating a commit does not change any remote repository. If you are using GitHub, you probably want this commit changes respective contents in the remote repository on GitHub. You can use \texttt{git push} to update remote repository with committed changes.
+
+\begin{verbatim}
+$ git push
+\end{verbatim}
+
+\newpage
+
 \section*{Reverting changes}
+
+One reason people using git as version control is that it can undo changes easily. When you make a new commit, git stores the status of your repository at that specific moment. In the future, you can go back to an earlier version by going back to the status git stored.
+
+Here are several undo commands and the scenarios for using them:
+
+\begin{enumerate}
+  \item \texttt{git revert <SHA>}. You have used \texttt{git push} to change your remote repository, but want to undo the change. This command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
+  \item \texttt{git commit --amend}. You created a new commit but have not pushed it to remote repository. There is a typo in your commit message. This command allows you to retype the commit message.
+  \item \texttt{git checkout -- <filename>} You want your files to go back to the state in the last commit. \texttt{git checkout} changes file in the working directory to a state previously recorded by git.
+  \item \texttt{git reset <SHA>}. You created several commits but have not pushed them to remote repository. The changes you made in the last commit is horrible and you want to go back to certain commit. \texttt{git reset} rewinds your repository's history back to the specified \texttt{<SHA>}.
+  \item \texttt{git reflog}. You used \texttt{git reset} to undo changes, but now you want redo them. \texttt{git reflog} recovers your directory's history.
+\end{enumerate}
+
+\newpage
 
 \section*{Branching}
 
@@ -206,7 +296,7 @@ To create a new branch (for example if you want a new branch named addfeature):
 \begin{verbatim}
 $ git branch add_feature
 \end{verbatim}
-	
+  
 This creates a new branch in the “development tree”.  Now you can work on this branch of the project without effecting the master branch.
 
 
@@ -214,7 +304,7 @@ As the figure above shows, branching creates a separate flow.  Now in order to b
 
 \begin{verbatim}
 $ git checkout add_feature
-\end{verbatim}	
+\end{verbatim}  
 
 Now the changes you make will be modifying this new branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than addfeature.
 
@@ -224,7 +314,7 @@ A simple shortcut is to run:
 
 \begin{verbatim}
 $ git checkout -b add_feature
-\end{verbatim}	
+\end{verbatim}  
 
 Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
 
@@ -232,7 +322,7 @@ Now when you are done with development you can delete your branch by using:
 
 \begin{verbatim}
 $ git branch -d add_feature
-\end{verbatim}	
+\end{verbatim}  
 
 If you want to rollback and see the state of your project at some previous point, you can use git log to look at the commit history and find the commit hash 
 
@@ -242,9 +332,11 @@ and use:
 
 \begin{verbatim}
 $ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
-\end{verbatim}	
+\end{verbatim}  
 
 To checkout the previous commit and see the state of the project at that point.
+
+\newpage
 
 \section*{Merging Branches}
 
@@ -252,13 +344,13 @@ Now after working on these separate branch and adding your new feature, you want
 
 \begin{verbatim}
 $ git checkout master
-\end{verbatim}	
+\end{verbatim}  
 
 And then merging the other branch in by:
 
 \begin{verbatim}
 $ git merge add_feature
-\end{verbatim}	
+\end{verbatim}  
 This may happen immediately, unless there are conflicts between the two branches that need to be resolved before they can be successfully merged.  By using git status, you can see in which files these conflicts are located.  Then within the files you will find sections of the form:
 
 \begin{verbatim}
@@ -267,7 +359,7 @@ stuff in the current branch
 =====
 things in other branch
 >>>>> add_feature
-\end{verbatim}	
+\end{verbatim}  
 
 And you will have to replace these sections with the content you want and then commit the changes to fully process the merge of the two branches.
 
