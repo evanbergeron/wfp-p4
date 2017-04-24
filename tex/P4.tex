@@ -6,6 +6,7 @@
 \usepackage{color}
 \usepackage{bussproofs}
 \usepackage{pgf, tikz}
+\usepackage{graphicx}
 \usetikzlibrary{arrows, automata}
 \usepackage{hyperref}
 
@@ -193,6 +194,45 @@ nothing added to commit but untracked files present
 \newpage
 \section*{Rebasing}
 
+The rebasing and merging are the two primary ways of combining changes from separate branches with Git.  One primary advantage of rebasing is that the Git history is made more linear which makes it easier to track changes over time.
+
+For example, say that you have been working on a separate branch called \texttt{feature} (shown in blue) on which you have two commits.  At the same time, a friend of yours has committed change ``C" to master (shown in green).
+
+\begin{figure}[h]
+\center
+\includegraphics[height=2cm]{feature}
+\end{figure}
+
+A regular merge command such as
+\begin{verbatim}
+$ git checkout master
+$ git merge feature
+\end{verbatim}
+would result in the following Git history:
+\begin{figure}[h]
+\center
+\includegraphics[height=2cm]{merge}
+\end{figure}
+
+However, if you want a more linear history, you would ideally want your commits ``E" and ``F" to be stacked on top of your friends commits.  To do as such, simply run as follows:
+\begin{verbatim}
+$ git checkout feature
+$ git rebase master
+$ git checkout master
+$ git merge feature
+\end{verbatim}
+
+The initial rebase command changes the root of your \texttt{feature} branch to your friend's last commit as shown below on the left image.
+
+\begin{figure}[h]
+\center
+\includegraphics[height=2cm]{rebase}
+\includegraphics[height=2cm]{rebase_merge}
+\end{figure}
+
+The final merge of your feature onto master then forwards master's history to match your feature branch as shown above on the right.  As you can see, the history follows a much more linear pattern compared to the branching pattern of a regular merge alone.
+
+\newpage
 \section*{Cherrypicking}
 
 \section*{Collaboration with Github}
@@ -234,7 +274,7 @@ I just used this, actually. Suppose you’ve changed a single file
 \texttt{foo.c} in different sections, and each of these changes are
 logically different. For instance, maybe you refactor some function
 \texttt{foo}, while at the same time fixing a bug in function
-\texttt{bar}. Rather than create a separate branch and manaully edit
+\texttt{bar}. Rather than create a separate branch and manually edit
 the files, we can simply say
 \[
   \texttt{git add -p foo.c}
