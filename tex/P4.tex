@@ -64,6 +64,7 @@ Ziyang Wang
 \maketitle
 
 \tableofcontents
+\newpage
 \section*{Introduction}
 
 This is a manual on how to set up Git on your computer and set up a basic Git workflow. The document covers installing and setting up Git and how to work with Git. The majority of this document is primarily intended for users who want to learn Git to use it in a fast-paced setting such as a hackathon, this document is also useful as a reference for experienced Git users who want to refer to some specifc concept or command which they need.
@@ -144,8 +145,52 @@ Initialized empty Git repository in <path to current directory>/.git/
 
 \section*{Merging Branches}
 
+\newpage
 \section*{Ignoring Files}
 
+The best way to ignore files in a repository is to create a \texttt{.gitignore} file at the base of your repository with the names of all files to ignore.
+
+Often you will find that in your projects, you will have files in your repository that do not need to be tracked.  These include automatically generated files, larger libraries that are really external dependencies, or system specific files such as the \texttt{.DS\_Store} file in Macs.
+
+For example, let us have a repository with two files: \texttt{code.py} and \texttt{generated.txt}.  Here we only want to keep track of changes to \texttt{code.py} while ignoring changes to \texttt{generated.txt} which is automatically generated every time \texttt{code.py} is run.
+
+Without a \texttt{.gitignore} file, running \texttt{git status} would get the following output:
+
+\begin{verbatim}
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  
+    code.py
+    generated.txt
+
+nothing added to commit but untracked files present
+(use "git add" to track)
+\end{verbatim}
+
+We create a \texttt{.gitignore} file with the following content:
+
+\begin{verbatim}
+generated.txt
+.gitignore
+\end{verbatim}
+
+Running \texttt{git status} again, we see that the generated file and the \texttt{.gitignore} itself are ignored by Git as desired.
+
+\begin{verbatim}
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  
+    code.py
+
+nothing added to commit but untracked files present
+(use "git add" to track)
+\end{verbatim}
+
+\newpage
 \section*{Rebasing}
 
 \section*{Cherrypicking}
@@ -156,7 +201,7 @@ Initialized empty Git repository in <path to current directory>/.git/
 
 \subsection*{Easily Reordering Commits}
 
-We’ve all been there. You pull from master, take several minutes to
+We've all been there. You pull from master, take several minutes to
 clean up the various merge conflicts, and then are ready to push. You
 pull one last time before pushing, and what do you know - someone has
 pushed again in the last couple minutes.
