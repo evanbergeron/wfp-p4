@@ -33,6 +33,8 @@
   {\normalfont\sffamily\large\bfseries\color{black}}
   {\thesubsection}{1em}{}
 
+\newcommand\code[1]{{\color{blue}\texttt{#1}}}
+
 \fvset{%
   fontsize=\small,
   numbers=left
@@ -97,7 +99,7 @@ Similar to Windows, one way of installing Git on is from this link
 
 \noindent
 Another way of installing Git is using the Xcode Command Line Tools. Open up Terminal 
-and simply type \verb|git|. If you don’t have Git installed already, it will prompt you to install it.
+and simply type \code{git}. If you don’t have Git installed already, it will prompt you to install it.
 
 \section{Linux}
 
@@ -105,51 +107,51 @@ If you're working on Linux, you can install Git using a basic package management
 
 Debian/Ubuntu
 
-\verb|$ apt-get install git|
+\code{\$ apt-get install git}
 
 \bigskip
 
 Fedora
 
-\verb|$ yum install git| (up to Fedora 21)
+\code{\$ yum install git} (up to Fedora 21)
 
-\verb|$ dnf install git| (Fedora 22 and later)
+\code{\$ dnf install git} (Fedora 22 and later)
 
 \bigskip
 
 Arch Linux
 
-\verb|$ pacman -S git|
+\code{\$ pacman -S git}
 
 \bigskip
 
 FreeBSD
 
-\verb|$ pkg install git|
+\code{\$ pkg install git}
 
 \bigskip
 
 Solaris 9/10/11 (OpenCSW)
 
-\verb|$ pkgutil -i git|
+\code{\$ pkgutil -i git}
 
 \bigskip
 
 Solaris 11 Express
 
-\verb|$ pkg install developer/versioning/git|
+\code{\$ pkg install developer/versioning/git}
 
 \bigskip
 
 OpenBSD
 
-\verb|$ pkg_add git|
+\code{\$ pkg\_add git}
 
 
 \chapter{Getting Started}
 \section{Initializing Repository}
 
-To make sure you have Git set up, type \verb|git| into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
+To make sure you have Git set up, type \code{git} into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
 
 \begin{blockcode}
 $ git
@@ -167,7 +169,7 @@ to read about a specific subcommand or concept.
 \end{blockcode}
 \bigskip
 \noindent
-To start a new repository, first go to ttype \verb|git init| into the console. It should output the following:
+To start a new repository, first go to type \code{git init} into the console. It should output the following:
 
 \begin{blockcode}
 $ git init
@@ -176,14 +178,14 @@ Initialized empty Git repository in <path to current directory>/.git/
 
 \bigskip
 \noindent
-This creates a \verb|./git| directory in your current directory, which consists of all information about the repository. It consists of a HEAD file, which points to the current version of the repository.
+This creates a \code{./git} directory in your current directory, which consists of all information about the repository. It consists of a HEAD file, which points to the current version of the repository.
 
 
 \section{Adding files to version control}
 
-The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \texttt{git add} command is used for adding files to the staging environment.
+The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \code{git add} command is used for adding files to the staging environment.
 
-For example, after creating a \texttt{test.txt} file in your working directory, you can check the current status using \texttt{git status} command. You should get the following message:
+For example, after creating a \texttt{test.txt} file in your working directory, you can check the current status using \code{git status} command. You should get the following message:
 
 \begin{blockcode}
 $ git status
@@ -197,7 +199,7 @@ nothing added to commit but untracked files present
 (use "git add" to track)
 \end{blockcode}
 
-In order to add the file to the staging environment and notify git for this change, type \texttt{git add test.txt} and check status. You should get the following message:
+In order to add the file to the staging environment and notify git for this change, type \code{git add test.txt} and check status. You should get the following message:
 
 \begin{blockcode}
 $ git add test.txt
@@ -212,11 +214,11 @@ Changes to be committed:
 
 Now the new file is ready for commit, i.e. ready to be added to the git repository.
 
-If the file you want to add is not in the working directory, use \texttt{git add <pathspec>} instead to add the file to the staging environment.
+If the file you want to add is not in the working directory, use \code{git add <pathspec>} instead to add the file to the staging environment.
 
 \section{Committing changes}
 
-A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \texttt{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
+A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \code{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
 
 For example, if you changed some contents in the file \texttt{index.html} and created a new file \texttt{new.txt}, a commit message should look like something as following:
 
@@ -227,7 +229,7 @@ $ git commit -m "Change index, add new file"
 create mode 100644 new.txt
 \end{blockcode}
 
-The \texttt{"-m"} flag allows you to give a message without opening a text editor. Alternatively, using \texttt{git commit} will open your text editor with some message like the following:
+The \code{"-m"} flag allows you to give a message without opening a text editor. Alternatively, using \code{git commit} will open your text editor with some message like the following:
 
 \begin{blockcode}
 $ git commit
@@ -249,7 +251,7 @@ $ git commit
 
 It is worth noting that anything that is still unstaged (files you have created or modified that you haven’t run git add on since you edited them) won’t go into the commit. 
 
-Creating a commit does not change any remote repository. If you are using GitHub, you probably want this commit changes respective contents in the remote repository on GitHub. You can use \texttt{git push} to update remote repository with committed changes.
+Creating a commit does not change any remote repository. If you are using GitHub, you probably want this commit changes respective contents in the remote repository on GitHub. You can use \code{git push} to update remote repository with committed changes.
 
 \begin{blockcode}
 $ git push
@@ -262,21 +264,21 @@ One reason people using git as version control is that it can undo changes easil
 Here are several undo commands and the scenarios for using them:
 
 \begin{enumerate}
-  \item \texttt{git revert <SHA>}. You have used \texttt{git push} to change your remote repository, but want to undo the change. This command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
-  \item \texttt{git commit --amend}. You created a new commit but have not pushed it to remote repository. There is a typo in your commit message. This command allows you to retype the commit message.
-  \item \texttt{git checkout -- <filename>} You want your files to go back to the state in the last commit. \texttt{git checkout} changes file in the working directory to a state previously recorded by git.
-  \item \texttt{git reset <SHA>}. You created several commits but have not pushed them to remote repository. The changes you made in the last commit is horrible and you want to go back to certain commit. \texttt{git reset} rewinds your repository's history back to the specified \texttt{<SHA>}.
-  \item \texttt{git reflog}. You used \texttt{git reset} to undo changes, but now you want redo them. \texttt{git reflog} recovers your directory's history.
+  \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change. This command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
+  \item \code{git commit --amend}. You created a new commit but have not pushed it to remote repository. There is a typo in your commit message. This command allows you to retype the commit message.
+  \item \code{git checkout -- <filename>} You want your files to go back to the state in the last commit. \code{git checkout} changes file in the working directory to a state previously recorded by git.
+  \item \code{git reset <SHA>}. You created several commits but have not pushed them to remote repository. The changes you made in the last commit is horrible and you want to go back to certain commit. \code{git reset} rewinds your repository's history back to the specified \code{<SHA>}.
+  \item \code{git reflog}. You used \code{git reset} to undo changes, but now you want redo them. \code{git reflog} recovers your directory's history.
 \end{enumerate}
 \section{Ignoring Files}
 
-The best way to ignore files in a repository is to create a \texttt{.gitignore} file at the base of your repository with the names of all files to ignore.
+The best way to ignore files in a repository is to create a \code{.gitignore} file at the base of your repository with the names of all files to ignore.
 
-Often you will find that in your projects, you will have files in your repository that do not need to be tracked.  These include automatically generated files, larger libraries that are really external dependencies, or system specific files such as the \texttt{.DS\_Store} file in Macs.
+Often you will find that in your projects, you will have files in your repository that do not need to be tracked.  These include automatically generated files, larger libraries that are really external dependencies, or system specific files such as the \code{.DS\_Store} file in Macs.
 
-For example, let us have a repository with two files: \texttt{code.py} and \texttt{generated.txt}.  Here we only want to keep track of changes to \texttt{code.py} while ignoring changes to \texttt{generated.txt} which is automatically generated every time \texttt{code.py} is run.
+For example, let us have a repository with two files: \code{code.py} and \code{generated.txt}.  Here we only want to keep track of changes to \texttt{code.py} while ignoring changes to \texttt{generated.txt} which is automatically generated every time \texttt{code.py} is run.
 
-Without a \texttt{.gitignore} file, running \texttt{git status} would get the following output:
+Without a \code{.gitignore} file, running \texttt{git status} would get the following output:
 
 \begin{blockcode}
 $ git status
@@ -350,7 +352,7 @@ Now when you are done with development you can delete your branch by using:
 $ git branch -d add_feature
 \end{blockcode}  
 
-If you want to rollback and see the state of your project at some previous point, you can use git log to look at the commit history and find the commit hash 
+If you want to rollback and see the state of your project at some previous point, you can use \code{git log} to look at the commit history and find the commit hash 
 
  
 
@@ -441,7 +443,7 @@ For example, take the hypothetical situation where your most recent commit ``F" 
 \includegraphics[height=2cm]{feature}
 \end{figure}
 
-To apply commit ``E" by itself to the master branch (in green), first find the commit-hash of your desired commit by running \texttt{git log} and searching for your commit.  A commit-hash is an identifying string of letters and numbers that may look something like \texttt{f3def414605008d5c899b2691ff1b6d1d3798a0a}.  After you have found your commit-hash, to apply your desired commit to the master branch, run the following commands:
+To apply commit ``E" by itself to the master branch (in green), first find the commit-hash of your desired commit by running \code{git log} and searching for your commit.  A commit-hash is an identifying string of letters and numbers that may look something like \texttt{f3def414605008d5c899b2691ff1b6d1d3798a0a}.  After you have found your commit-hash, to apply your desired commit to the master branch, run the following commands:
 \begin{blockcode}
 $ git checkout master
 $ git cherry-pick <commit-hash of E>
@@ -481,7 +483,7 @@ This works fine, but there’s a simpler method. We can simply say:
 \begin{blockcode}
 $ git rebase -i HEAD~2
 \end{blockcode}
-This will open an interactive git rebasing session (the \texttt{-i}
+This will open an interactive git rebasing session (the \code{-i}
 stands for interactive). The window will display something along the
 lines of
 \begin{blockcode}
@@ -497,22 +499,22 @@ It can sometimes be helpful to stage only part of the changes made to a single f
 $ git add -p <file>
 \end{blockcode}
 This will bring up an interactive prompt. This prompt will cycle
-through the different areas of the diff. For each section, you will be asked if you want to stage each section. You may hit \texttt{y} or \texttt{n} for yes or no.
+through the different areas of the diff. For each section, you will be asked if you want to stage each section. You may hit \code{y} or \code{n} for yes or no.
 
 Once you're done adding the subset of changes you want to commit, you
 can double-check you have the right changes staged by saying
 \begin{blockcode}
 $ git diff --cached
 \end{blockcode}
-One everything looks good, simply \texttt{commit} as normal.
+One everything looks good, simply \code{commit} as normal.
 
 \section{Git aliases}
-Typing out full commands such as ``\texttt{git commit}'' and ``\texttt{git log --oneline}'' can take a lot of time. Git aliases are a useful tool to save yourself commonly typed commands. For instance, we might say
+Typing out full commands such as ``\code{git commit}'' and ``\code{git log --oneline}'' can take a lot of time. Git aliases are a useful tool to save yourself commonly typed commands. For instance, we might say
 \begin{blockcode}
 $ git config --global alias.l "log --oneline"
 $ git l
 \end{blockcode}
-to save ourselves typing out ``\texttt{log --oneline}'' everytime. It is worth spending a couple moments to create a handful of shortcuts.
+to save ourselves typing out ``\code{log --oneline}'' everytime. It is worth spending a couple moments to create a handful of shortcuts.
 
 \chapter{Vim Integration}
 
@@ -532,9 +534,9 @@ $ vim -u NONE -c "helptags vim-fugitive/doc" -c q
 Vundle is a great plugin manager for vim -- if you use this, you may
 simply add the line
 \[
-  \texttt{Plugin 'tpope/vim-fugitive}
+  \code{Plugin 'tpope/vim-fugitive}
 \]
-to your vimrc and run the \texttt{PluginInstall} command.
+to your vimrc and run the \code{PluginInstall} command.
 
 \section{Easy git blame}
 You’re browsing some file and discover a horrible bug written by one
@@ -543,9 +545,9 @@ verbally abuse them for producing incorrect code. Before you deliver
 your diatribe, you need to know who to blame.
 
 Before using \texttt{vim-fugitive}, you would have to exit vim,
-manually type “\texttt{git blame <filename>},” and then search for the
+manually type “\code{git blame <filename>},” and then search for the
 relevant line in the output. Now, you can simply type
-“\texttt{:Gblame}” in your vim prompt, and a vertical split will open
+“\code{:Gblame}” in your vim prompt, and a vertical split will open
 up right next to the line in question. You could even establish a
 keybinding to do this for you! What was once several lines of typing
 is now a single keystroke away! Your coworkers have never been so
@@ -561,7 +563,7 @@ thus assume usage of this package.
 \section{Installing Magit}
 Perhaps the easiest way to install is through MELPA. Just run
 \[
-  \texttt{M-x package-install RET magit RET}
+  \code{M-x package-install RET magit RET}
 \]
 
 \section{Using Magit}
