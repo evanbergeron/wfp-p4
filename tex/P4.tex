@@ -13,6 +13,10 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 
+\DefineVerbatimEnvironment{blockcode}
+  {Verbatim}
+  {fontsize=\small,formatcom=\color{blue}}
+
 \titleformat{\chapter}[display]
   {\normalfont\sffamily\huge\bfseries\color{black}}
   {\thechapter.}{20pt}{\Huge}
@@ -46,7 +50,13 @@ Ziyang Wang
 \newpage
 \chapter{Introduction}
 
-This is a manual on how to set up Git on your computer and set up a basic Git workflow. The document covers installing and setting up Git and how to work with Git. The majority of this document is primarily intended for users who want to learn Git to use it in a fast-paced setting such as a hackathon, this document is also useful as a reference for experienced Git users who want to refer to some specifc concept or command which they need.
+This is a manual on how to set up Git on your computer and set up a basic Git workflow. We cover installing, setting up, and working with git. Intermediate workflow tips are provided, as are recommendations for popular editor integrations.
+
+This document is intended for users who want to learn Git to use it in a fast-paced setting such as a hackathon, this document is also useful as a reference for experienced Git users who want to refer to some specifc concept or command which they need.
+
+\section{How to use this document}
+
+Complete beginners to \texttt{git} will want to start with chapters 2 and 3. Chapter 4 covers branches; a topic perhaps not essential to basic usage. Readers already familiar with \texttt{git} may find the final chapters helpful in elevating their workflow efficiency.
 
 \section{What is Git}
 
@@ -137,7 +147,7 @@ OpenBSD
 
 To make sure you have Git set up, type \verb|git| into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
 
-\begin{verbatim}
+\begin{blockcode}
 $ git
 usage: git [--version] [--help] [-C <path>] [-c name=value]
 [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
@@ -150,15 +160,15 @@ usage: git [--version] [--help] [-C <path>] [-c name=value]
 'git help -a' and 'git help -g' list available subcommands and some
 concept guides. See 'git help <command>' or 'git help <concept>'
 to read about a specific subcommand or concept.
-\end{verbatim}
+\end{blockcode}
 \bigskip
 \noindent
 To start a new repository, first go to ttype \verb|git init| into the console. It should output the following:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git init
 Initialized empty Git repository in <path to current directory>/.git/
-\end{verbatim}
+\end{blockcode}
 
 \bigskip
 \noindent
@@ -171,7 +181,7 @@ The staging environment, or sometimes referred as index, is a file that stores i
 
 For example, after creating a \texttt{test.txt} file in your working directory, you can check the current status using \texttt{git status} command. You should get the following message:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git status
 On branch master
 Untracked files:
@@ -181,11 +191,11 @@ Untracked files:
 
 nothing added to commit but untracked files present
 (use "git add" to track)
-\end{verbatim}
+\end{blockcode}
 
 In order to add the file to the staging environment and notify git for this change, type \texttt{git add test.txt} and check status. You should get the following message:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git add test.txt
 $ git status
 On branch master
@@ -194,7 +204,7 @@ Changes to be committed:
   
     New file: test.txt
 
-\end{verbatim}
+\end{blockcode}
 
 Now the new file is ready for commit, i.e. ready to be added to the git repository.
 
@@ -206,16 +216,16 @@ A commit is a record of what files you have added or changed since the last time
 
 For example, if you changed some contents in the file \texttt{index.html} and created a new file \texttt{new.txt}, a commit message should look like something as following:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git commit -m "Change index, add new file"
 [master 3651e36] Change index, add new file
 2 files changed, 10 insertions(+)
 create mode 100644 new.txt
-\end{verbatim}
+\end{blockcode}
 
 The \texttt{"-m"} flag allows you to give a message without opening a text editor. Alternatively, using \texttt{git commit} will open your text editor with some message like the following:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git commit
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
@@ -230,16 +240,16 @@ $ git commit
 ~
 ~
 ".git/COMMIT_EDITMSG" 9L, 283C
-\end{verbatim}
+\end{blockcode}
 
 
 It is worth noting that anything that is still unstaged (files you have created or modified that you haven’t run git add on since you edited them) won’t go into the commit. 
 
 Creating a commit does not change any remote repository. If you are using GitHub, you probably want this commit changes respective contents in the remote repository on GitHub. You can use \texttt{git push} to update remote repository with committed changes.
 
-\begin{verbatim}
+\begin{blockcode}
 $ git push
-\end{verbatim}
+\end{blockcode}
 
 \section{Reverting changes}
 
@@ -264,7 +274,7 @@ For example, let us have a repository with two files: \texttt{code.py} and \text
 
 Without a \texttt{.gitignore} file, running \texttt{git status} would get the following output:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git status
 On branch master
 Untracked files:
@@ -275,18 +285,18 @@ Untracked files:
 
 nothing added to commit but untracked files present
 (use "git add" to track)
-\end{verbatim}
+\end{blockcode}
 
 We create a \texttt{.gitignore} file with the following content:
 
-\begin{verbatim}
+\begin{blockcode}
 generated.txt
 .gitignore
-\end{verbatim}
+\end{blockcode}
 
 Running \texttt{git status} again, we see that the generated file and the \texttt{.gitignore} itself are ignored by Git as desired.
 
-\begin{verbatim}
+\begin{blockcode}
 $ git status
 On branch master
 Untracked files:
@@ -296,7 +306,7 @@ Untracked files:
 
 nothing added to commit but untracked files present
 (use "git add" to track)
-\end{verbatim}
+\end{blockcode}
 
 \chapter{Branching}
 
@@ -305,18 +315,18 @@ In git, branching is used to keep track of the different paths of development fo
 \section{Creating branches}
 
 To create a new branch (for example if you want a new branch named addfeature):
-\begin{verbatim}
+\begin{blockcode}
 $ git branch add_feature
-\end{verbatim}
+\end{blockcode}
   
 This creates a new branch in the “development tree”.  Now you can work on this branch of the project without effecting the master branch.
 
 
 As the figure above shows, branching creates a separate flow.  Now in order to bring your current local state to that branch you will have to check it out by:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout add_feature
-\end{verbatim}  
+\end{blockcode}  
 
 Now the changes you make will be modifying this new branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than addfeature.
 
@@ -324,17 +334,17 @@ Note that to checkout a different branch your current changes must be committed 
 
 A simple shortcut is to run:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout -b add_feature
-\end{verbatim}  
+\end{blockcode}  
 
 Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
 
 Now when you are done with development you can delete your branch by using:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git branch -d add_feature
-\end{verbatim}  
+\end{blockcode}  
 
 If you want to rollback and see the state of your project at some previous point, you can use git log to look at the commit history and find the commit hash 
 
@@ -342,9 +352,9 @@ If you want to rollback and see the state of your project at some previous point
 
 and use:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
-\end{verbatim}  
+\end{blockcode}  
 
 To checkout the previous commit and see the state of the project at that point.
 
@@ -354,24 +364,24 @@ To combine branches, we have two main options: merging and rebasing.
 
 Now after working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added.  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout master
-\end{verbatim}  
+\end{blockcode}  
 
 And then merging the other branch in by:
 
-\begin{verbatim}
+\begin{blockcode}
 $ git merge add_feature
-\end{verbatim}  
+\end{blockcode}  
 This may happen immediately, unless there are conflicts between the two branches that need to be resolved before they can be successfully merged.  By using git status, you can see in which files these conflicts are located.  Then within the files you will find sections of the form:
 
-\begin{verbatim}
+\begin{blockcode}
 <<<<< HEAD
 stuff in the current branch
 =====
 things in other branch
 >>>>> add_feature
-\end{verbatim}  
+\end{blockcode}  
 
 And you will have to replace these sections with the content you want and then commit the changes to fully process the merge of the two branches.
 
@@ -387,10 +397,10 @@ For example, say that you have been working on a separate branch called \texttt{
 \end{figure}
 
 A regular merge command such as
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout master
 $ git merge feature
-\end{verbatim}
+\end{blockcode}
 would result in the following Git history:
 \begin{figure}[h]
 \center
@@ -398,12 +408,12 @@ would result in the following Git history:
 \end{figure}
 
 However, if you want a more linear history, you would ideally want your commits ``E" and ``F" to be stacked on top of your friends commits.  To do as such, simply run as follows:
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout feature
 $ git rebase master
 $ git checkout master
 $ git merge feature
-\end{verbatim}
+\end{blockcode}
 
 The initial rebase command changes the root of your \texttt{feature} branch to your friend's last commit as shown below on the left image.
 
@@ -416,7 +426,7 @@ The initial rebase command changes the root of your \texttt{feature} branch to y
 The final merge of your feature onto master then forwards master's history to match your feature branch as shown above on the right.  As you can see, the history follows a much more linear pattern compared to the branching pattern of a regular merge alone.
 
 \chapter{Intermediate Git}
-\section{Cherry-picking}
+\section{Cherry-picking Commits}
 
 Cherry-picking is particularly useful when you don't want to apply all changes from a branch to another branch through a merge or rebase, but only want to apply a few specific commits.
 
@@ -428,10 +438,10 @@ For example, take the hypothetical situation where your most recent commit ``F" 
 \end{figure}
 
 To apply commit ``E" by itself to the master branch (in green), first find the commit-hash of your desired commit by running \texttt{git log} and searching for your commit.  A commit-hash is an identifying string of letters and numbers that may look something like \texttt{f3def414605008d5c899b2691ff1b6d1d3798a0a}.  After you have found your commit-hash, to apply your desired commit to the master branch, run the following commands:
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout master
 $ git cherry-pick <commit-hash of E>
-\end{verbatim}
+\end{blockcode}
 
 Running these commands gets your final desired result shown below:
 
@@ -460,12 +470,12 @@ pull one last time before pushing, and what do you know - someone has
 pushed again in the last couple minutes.
 
 Previously, my workflow for this situation would look something like
-\begin{verbatim}
+\begin{blockcode}
 $ git checkout -b tmp
 $ git checkout master
 $ git reset --hard HEAD~
 $ git cherry-pick tmp
-\end{verbatim}
+\end{blockcode}
 
 This works fine, but there’s a much easier way -- one that involves
 very little typing. We can simply say
@@ -475,10 +485,10 @@ very little typing. We can simply say
 This will open an interactive git rebasing session (the \texttt{-i}
 stands for interactive). The window will display something along the
 lines of
-\begin{verbatim}
+\begin{blockcode}
 pick 370e221 Commit one
 pick c342396 Commit two
-\end{verbatim}
+\end{blockcode}
 In whichever text editor we’re in, we may simply reorder these lines
 to reorder the commits. Much shorter!
 
@@ -528,11 +538,11 @@ usage of this plugin throughout the entire vim workflows tutorial.
 
 There are a number of ways to install vim-fugitive. The one suggested
 by Tim Pope is as follows:
-\begin{verbatim}
+\begin{blockcode}
 $ cd ~/.vim/bundle
 $ git clone git://github.com/tpope/vim-fugitive.git
 $ vim -u NONE -c "helptags vim-fugitive/doc" -c q
-\end{verbatim}
+\end{blockcode}
 Vundle is a great plugin manager for vim -- if you use this, you may
 simply add the line
 \[
