@@ -544,19 +544,18 @@ to your vimrc and run the \code{PluginInstall} command.
 
 % TODO(Evan) rephrase
 \section{Easy git blame}
-You're browsing some file and discover a horrible bug written by one
-of your coworkers. You're about to storm over to someone’s desk and
-verbally abuse them for producing incorrect code. Before you deliver
-your diatribe, you need to know who to blame.
 
-Before using \texttt{vim-fugitive}, you would have to exit vim,
-manually type “\code{git blame <filename>},” and then search for the
-relevant line in the output. Now, you can simply type
-“\code{:Gblame}” in your vim prompt, and a vertical split will open
-up right next to the line in question. You could even establish a
-keybinding to do this for you! What was once several lines of typing
-is now a single keystroke away! Your coworkers have never been so
-scared\ldots
+When browsing a larger codebase, \code{git blame} can be
+very helpful.
+
+A naive solution might first exit vim, manually type “\code{git blame
+ <filename>},” then search for the relevant line in the resulting
+output.
+
+\texttt{vim-fugitive} provides an easy way to run \code{git blame}; we
+simply type \code{:Glame} in normal mode. This function can be bound
+to a keybinding of your choosing. \code{Glame} opens a vertical split
+immediately to the left of your source code.
 
 % TODO(Evan) will finish this in a later draft
 \chapter{Emacs Integration}
