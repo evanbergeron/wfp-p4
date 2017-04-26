@@ -17,6 +17,10 @@
   {Verbatim}
   {fontsize=\small,formatcom=\color{blue}}
 
+\DefineVerbatimEnvironment{badblockcode}
+  {Verbatim}
+  {fontsize=\small,formatcom=\color{red}}
+
 \titleformat{\chapter}[display]
   {\normalfont\sffamily\huge\bfseries\color{black}}
   {\thechapter.}{20pt}{\Huge}
@@ -464,24 +468,19 @@ The workflow using github usually involves many collaborators who make pull requ
 
 \section{Easily Reordering Commits}
 
-We've all been there. You pull from master, take several minutes to
-clean up the various merge conflicts, and then are ready to push. You
-pull one last time before pushing, and what do you know - someone has
-pushed again in the last couple minutes.
-
-Previously, my workflow for this situation would look something like
-\begin{blockcode}
+Reordering commits is a common task and can be performed in a single command. 
+A naive workflow for this task might look like
+\begin{badblockcode}
 $ git checkout -b tmp
 $ git checkout master
 $ git reset --hard HEAD~
 $ git cherry-pick tmp
-\end{blockcode}
+\end{badblockcode}
 
-This works fine, but there’s a much easier way -- one that involves
-very little typing. We can simply say
-\[
-  \texttt{git rebase -i HEAD~2}
-\]
+This works fine, but there’s a simpler method. We can simply say:
+\begin{blockcode}
+$ git rebase -i HEAD~2
+\end{blockcode}
 This will open an interactive git rebasing session (the \texttt{-i}
 stands for interactive). The window will display something along the
 lines of
@@ -489,44 +488,31 @@ lines of
 pick 370e221 Commit one
 pick c342396 Commit two
 \end{blockcode}
-In whichever text editor we’re in, we may simply reorder these lines
-to reorder the commits. Much shorter!
+Simply reorder these lines to reorder the commits. Much shorter!
 
 \section{Adding partial files}
-I just used this, actually. Suppose you’ve changed a single file
-\texttt{foo.c} in different sections, and each of these changes are
-logically different. For instance, maybe you refactor some function
-\texttt{foo}, while at the same time fixing a bug in function
-\texttt{bar}. Rather than create a separate branch and manually edit
-the files, we can simply say
-\[
-  \texttt{git add -p foo.c}
-\]
-This will bring up an interactive prompt. It will automatically cycle
-through all the different areas of the diff, asking you if you want to
-stage each section. You may hit \texttt{y} or \texttt{n} for yes or
-no.
+It can sometimes be helpful to stage only part of the changes made to a single file. (Especially if there are two logically different salient tasks). A naive workflow might involve creating separate branches and manually editing files. Instead, we may say:
 
-Once you’re done adding the subset of changes you want to commit, you
+\begin{blockcode}
+$ git add -p <file>
+\end{blockcode}
+This will bring up an interactive prompt. This prompt will cycle
+through the different areas of the diff. For each section, you will be asked if you want to stage each section. You may hit \texttt{y} or \texttt{n} for yes or no.
+
+Once you're done adding the subset of changes you want to commit, you
 can double-check you have the right changes staged by saying
-\[
-  \texttt{git diff --cached}
-\]
-Once you’re sure that you’re good to go, just commit your changes as
-normal. You can repeat this process for the remaining changes. (Or
-just do a normal \texttt{git add} at this point).
+\begin{blockcode}
+$ git diff --cached
+\end{blockcode}
+One everything looks good, simply \texttt{commit} as normal.
 
 \section{Git aliases}
-Git aliases are a good way to save yourself a lot of typing. I
-frequently want to see the git commit history, but don’t especially
-care about the body of each commit. Here’s the command I’ve added to
-my configuration:
-\[
-  \texttt{git config --global alias.l "log --oneline"}
-\]
-I can then just type “\texttt{git l}” to see a one line log of this
-commit history. If there are several long commands you use frequently,
-this can be a great way to save yourself some time.
+Typing out full commands such as ``\texttt{git commit}'' and ``\texttt{git log --oneline}'' can take a lot of time. Git aliases are a useful tool to save yourself commonly typed commands. For instance, we might say
+\begin{blockcode}
+$ git config --global alias.l "log --oneline"
+$ git l
+\end{blockcode}
+to save ourselves typing out ``\texttt{log --oneline}'' everytime. It is worth spending a couple moments to create a handful of shortcuts.
 
 \chapter{Vim Integration}
 
