@@ -1,7 +1,7 @@
-\documentclass{amsart}
+\documentclass[12pt]{report}
 \usepackage{amsmath, amssymb}
-%\usepackage{mathpartir}
 \usepackage{listings}
+\usepackage[margin=1.6in]{geometry}
 \usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{bussproofs}
@@ -9,48 +9,28 @@
 \usepackage{graphicx}
 \usetikzlibrary{arrows, automata}
 \usepackage{hyperref}
+\usepackage[scaled=.90]{helvet}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\huge\bfseries\color{black}}
+  {\thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+  {\normalfont\sffamily\Huge\bfseries\color{black}}
+  {\thesection}{10em}{}
+
+\titleformat{\subsection}
+  {\normalfont\sffamily\Large\bfseries\color{black}}
+  {\thesubsection}{1em}{}
 
 \fvset{%
   fontsize=\small,
   numbers=left
 }
 
-\makeatletter
-\renewcommand\subsection{\@startsection{subsection}{2}%
-  \z@{-.5\linespacing\@plus-.7\linespacing}{.5\linespacing}%
-  {\normalfont\scshape}}
-\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
-  \z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
-  {\normalfont\scshape}}
-\makeatother
-
-\setcounter{tocdepth}{3}
-\makeatletter
-\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
-%Make Chapter disapear in ToC
-\renewcommand\tocchapter[3]{%
-  \indentlabel{\@ifnotempty{#2}{\ignorespaces#2.\quad}}#3%
-}
-\newcommand\@dotsep{4.5}
-\def\@tocline#1#2#3#4#5#6#7{\relax
-  \ifnum #1>\c@tocdepth % then omit
-  \else
-    \par \addpenalty\@secpenalty\addvspace{#2}%
-    \begingroup \hyphenpenalty\@M
-    \@ifempty{#4}{%
-      \@tempdima\csname r@tocindent\number#1\endcsname\relax
-    }{%
-      \@tempdima#4\relax
-    }%
-    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
-    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
-    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
-    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
-    \nobreak
-    \hbox to\@pnumwidth{\@tocpagenum{#7}}\par
-    \nobreak
-    \endgroup
-  \fi}
+\renewcommand\section[1]{{\chapter{#1}}}
 
 \title{Git Instruction Manual}
 \author{Evan Bergeron\\
@@ -66,31 +46,29 @@ Ziyang Wang
 
 \tableofcontents
 \newpage
-\section*{Introduction}
+\section{Introduction}
 
 This is a manual on how to set up Git on your computer and set up a basic Git workflow. The document covers installing and setting up Git and how to work with Git. The majority of this document is primarily intended for users who want to learn Git to use it in a fast-paced setting such as a hackathon, this document is also useful as a reference for experienced Git users who want to refer to some specifc concept or command which they need.
 
-\section*{What is Git}
+\section{What is Git}
 
 Git is a version control system designed to be used for working on small and large projects. It can be used for tracking changes between files and coordinating work on project files among multiple people.
 
-\subsection*{Motivation}
+\subsection{Motivation}
 When you were in school and you had short homework assignments, you would just start them and finish them in a short span of time (not longer than a week). But when you move on to designing and working on bigger projects with other people, there are multiple issues that come into play. Say you are participating in a hackathon and have finalized your idea and distribution of work among the teammates. How do you actually work on the project together? 
 
 Having all of them work on one computer is not optimal. You might have each teammate work on his own piece independently, but how do you merge everyone's work? Moreover, what if two or more teammates work on the same file, but do different modifications unknown to the others? And what if someone wants to explore a different direction to work on, while keeping the original work intact? Enter Git.
 
-\subsection*{Benefits}
+\subsection{Benefits}
 \begin{enumerate}
   \item Using Git, if you're working on a project, you can ``commit" the changes you have made and Git will keep track of all your commits. 
   
   \item If you want to explore a new direction of work which you don't want to integrate with your main project just yet, you can create a new branch and work on the branch without disturbing your main project. You can easily switch between multiple branches to work on multiple features, can when the time comes, you can merge with the main branch. 
 \end{enumerate}
 
-\newpage
+\section{Installing Git}
 
-\section*{Installing Git}
-
-\subsection*{Windows}
+\subsection{Windows}
 If you have Windows, one easy way of installing Git is from this website:
 
 \url{https://git-scm.com/download/win}
@@ -98,7 +76,7 @@ If you have Windows, one easy way of installing Git is from this website:
 \noindent
 Once you have downloaded the installation file, you can run it and proceed through the installation steps.
 
-\subsection*{Mac}
+\subsection{Mac}
 
 Similar to Windows, one way of installing Git on is from this link
 
@@ -109,7 +87,7 @@ Similar to Windows, one way of installing Git on is from this link
 Another way of installing Git is using the Xcode Command Line Tools. Open up Terminal 
 and simply type \verb|git|. If you don’t have Git installed already, it will prompt you to install it.
 
-\subsection*{Linux}
+\subsection{Linux}
 
 If you're working on Linux, you can install Git using a basic package management tool that comes with your distribution.
 
@@ -156,9 +134,7 @@ OpenBSD
 \verb|$ pkg_add git|
 
 
-\newpage
-
-\section*{Initializing Repository}
+\section{Initializing Repository}
 
 To make sure you have Git set up, type \verb|git| into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
 
@@ -190,9 +166,7 @@ Initialized empty Git repository in <path to current directory>/.git/
 This creates a \verb|./git| directory in your current directory, which consists of all information about the repository. It consists of a HEAD file, which points to the current version of the repository.
 
 
-\newpage
-
-\section*{Adding files to version control}
+\section{Adding files to version control}
 
 The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \texttt{git add} command is used for adding files to the staging environment.
 
@@ -227,9 +201,7 @@ Now the new file is ready for commit, i.e. ready to be added to the git reposito
 
 If the file you want to add is not in the working directory, use \texttt{git add <pathspec>} instead to add the file to the staging environment.
 
-\newpage
-
-\section*{Committing changes}
+\section{Committing changes}
 
 A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \texttt{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
 
@@ -270,9 +242,7 @@ Creating a commit does not change any remote repository. If you are using GitHub
 $ git push
 \end{verbatim}
 
-\newpage
-
-\section*{Reverting changes}
+\section{Reverting changes}
 
 One reason people using git as version control is that it can undo changes easily. When you make a new commit, git stores the status of your repository at that specific moment. In the future, you can go back to an earlier version by going back to the status git stored.
 
@@ -286,9 +256,7 @@ Here are several undo commands and the scenarios for using them:
   \item \texttt{git reflog}. You used \texttt{git reset} to undo changes, but now you want redo them. \texttt{git reflog} recovers your directory's history.
 \end{enumerate}
 
-\newpage
-
-\section*{Branching}
+\section{Branching}
 
 In git, branching is used to keep track of the different paths of development for your project.  The master branch is the main branch of your project and after features or changes are verified, they are usually added to the master branch of the project.
 
@@ -336,9 +304,7 @@ $ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
 
 To checkout the previous commit and see the state of the project at that point.
 
-\newpage
-
-\section*{Merging Branches}
+\section{Merging Branches}
 
 Now after working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added.  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
 
@@ -363,8 +329,7 @@ things in other branch
 
 And you will have to replace these sections with the content you want and then commit the changes to fully process the merge of the two branches.
 
-\newpage
-\section*{Ignoring Files}
+\section{Ignoring Files}
 
 The best way to ignore files in a repository is to create a \texttt{.gitignore} file at the base of your repository with the names of all files to ignore.
 
@@ -408,8 +373,7 @@ nothing added to commit but untracked files present
 (use "git add" to track)
 \end{verbatim}
 
-\newpage
-\section*{Rebasing}
+\section{Rebasing}
 
 The rebasing and merging are the two primary ways of combining changes from separate branches with Git.  One primary advantage of rebasing is that the Git history is made more linear which makes it easier to track changes over time.
 
@@ -449,8 +413,7 @@ The initial rebase command changes the root of your \texttt{feature} branch to y
 
 The final merge of your feature onto master then forwards master's history to match your feature branch as shown above on the right.  As you can see, the history follows a much more linear pattern compared to the branching pattern of a regular merge alone.
 
-\newpage
-\section*{Cherry-picking}
+\section{Cherry-picking}
 
 Cherry-picking is particularly useful when you don't want to apply all changes from a branch to another branch through a merge or rebase, but only want to apply a few specific commits.
 
@@ -476,8 +439,7 @@ Running these commands gets your final desired result shown below:
 
 where commit ``E" has been applied to the master branch from your feature branch without merging your entire bug-ridden feature branch to master.
 
-\newpage
-\section*{Collaboration with Github}
+\section{Collaboration with Github}
 
 You can use github for a more user-friendly version controlling experience.  Almost everything you can do using the command line can be done using the desktop client.  You can easily select files, read their diffs, and commit them.
  
@@ -487,9 +449,9 @@ Using the online interface, you can create repositories, add contributors, and t
 The workflow using github usually involves many collaborators who make pull requests to the managers of the repository.
 
 
-\section*{General workflows}
+\section{General workflows}
 
-\subsection*{Easily Reordering Commits}
+\subsection{Easily Reordering Commits}
 
 We've all been there. You pull from master, take several minutes to
 clean up the various merge conflicts, and then are ready to push. You
@@ -519,7 +481,7 @@ pick c342396 Commit two
 In whichever text editor we’re in, we may simply reorder these lines
 to reorder the commits. Much shorter!
 
-\subsection*{Adding partial files}
+\subsection{Adding partial files}
 I just used this, actually. Suppose you’ve changed a single file
 \texttt{foo.c} in different sections, and each of these changes are
 logically different. For instance, maybe you refactor some function
@@ -543,7 +505,7 @@ Once you’re sure that you’re good to go, just commit your changes as
 normal. You can repeat this process for the remaining changes. (Or
 just do a normal \texttt{git add} at this point).
 
-\subsection*{Git aliases}
+\subsection{Git aliases}
 Git aliases are a good way to save yourself a lot of typing. I
 frequently want to see the git commit history, but don’t especially
 care about the body of each commit. Here’s the command I’ve added to
@@ -555,13 +517,13 @@ I can then just type “\texttt{git l}” to see a one line log of this
 commit history. If there are several long commands you use frequently,
 this can be a great way to save yourself some time.
 
-\section*{Vim workflows}
+\section{Vim workflows}
 
 At the time of writing, perhaps the most feature complete vim-git
 plugin is Tim Pope’s “vim-fugitive.” Consequently, we will assume
 usage of this plugin throughout the entire vim workflows tutorial.
 
-\subsection*{Installing vim-fugitive}
+\subsection{Installing vim-fugitive}
 
 There are a number of ways to install vim-fugitive. The one suggested
 by Tim Pope is as follows:
@@ -577,7 +539,7 @@ simply add the line
 \]
 to your vimrc and run the \texttt{PluginInstall} command.
 
-\subsection*{Easy git blame}
+\subsection{Easy git blame}
 You’re browsing some file and discover a horrible bug written by one
 of your coworkers. You’re about to storm over to someone’s desk and
 verbally abuse them for producing incorrect code. Before you deliver
@@ -593,19 +555,19 @@ is now a single keystroke away! Your coworkers have never been so
 scared\ldots
 
 % TODO Evan will finish this in a later draft
-% \section*{Emacs workflows}
+% \section{Emacs workflows}
 
 % Similarly to vim-fugitive for vim, “Magit” is (at the time of
 % writing), the most feature-complete git wrapper for emacs. We will
 % thus assume usage of this package.
 
-% \subsection*{Installing Magit}
+% \subsection{Installing Magit}
 % Perhaps the easiest way to install is through MELPA. Just run
 % \[
 %   \texttt{M-x package-install RET magit RET}
 % \]
 
-% \subsection*{Using Magit}
+% \subsection{Using Magit}
 % We only have space to cover the basics of git usage in magit, but
 % here’s a general outline:
 
