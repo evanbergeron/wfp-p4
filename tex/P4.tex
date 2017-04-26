@@ -64,16 +64,16 @@ This document is intended for users who want to learn Git to use it in a fast-pa
 
 Complete beginners to \texttt{git} will want to start with chapters 2 and 3. Chapter 4 covers branches; a topic perhaps not essential to basic usage. Readers already familiar with \texttt{git} may find the final chapters helpful in elevating their workflow efficiency.
 
-\section{What is Git}
+\section{What is Git?}
 
 Git is a version control system designed to be used for working on small and large projects. It can be used for tracking changes between files and coordinating work on project files among multiple people.
 
-\section{Motivation for using Git}
+\section{Why use Git?}
 When you were in school and you had short homework assignments, you would just start them and finish them in a short span of time (not longer than a week). But when you move on to designing and working on bigger projects with other people, there are multiple issues that come into play. Say you are participating in a hackathon and have finalized your idea and distribution of work among the teammates. How do you actually work on the project together? 
 
 Having all of them work on one computer is not optimal. You might have each teammate work on his own piece independently, but how do you merge everyone's work? Moreover, what if two or more teammates work on the same file, but do different modifications unknown to the others? And what if someone wants to explore a different direction to work on, while keeping the original work intact? Enter Git.
 
-\section{Benefits of using git}
+\section{Benefits of Git}
 \begin{enumerate}
   \item Using Git, if you're working on a project, you can ``commit" the changes you have made and Git will keep track of all your commits. 
   
@@ -82,7 +82,7 @@ Having all of them work on one computer is not optimal. You might have each team
 
 \chapter{Installing Git}
 
-\section{Windows}
+\section{For Windows}
 If you have Windows, one easy way of installing Git is from this website:
 
 \url{https://git-scm.com/download/win}
@@ -90,9 +90,9 @@ If you have Windows, one easy way of installing Git is from this website:
 \noindent
 Once you have downloaded the installation file, you can run it and proceed through the installation steps.
 
-\section{Mac}
+\section{For Mac}
 
-Similar to Windows, one way of installing Git on is from this link
+One way of installing Git on is from this link
 
 \url{https://git-scm.com/download/mac}
 
@@ -101,7 +101,7 @@ Similar to Windows, one way of installing Git on is from this link
 Another way of installing Git is using the Xcode Command Line Tools. Open up Terminal 
 and simply type \code{git}. If you don’t have Git installed already, it will prompt you to install it.
 
-\section{Linux}
+\section{For Linux}
 
 If you're working on Linux, you can install Git using a basic package management tool that comes with your distribution.
 
@@ -460,6 +460,8 @@ where commit ``E" has been applied to the master branch from your feature branch
 
 \section{Collaboration with Github}
 
+Github is a website that manages git repositories. You can create an account on the site. Ever user gets an unlimited number of public repositories. Be warned that public repositories can be viewed by anyone accessing \code{github.com}. By default, you retain the copyright to whatever code you post to Github.
+
 You can use github for a more user-friendly version controlling experience.  Almost everything you can do using the command line can be done using the desktop client.  You can easily select files, read their diffs, and commit them.
  
 
@@ -518,6 +520,8 @@ to save ourselves typing out ``\code{log --oneline}'' everytime. It is worth spe
 
 \chapter{Vim Integration}
 
+Vim is a popular text editor. Its key feature is called modal editing, which allows users to edit text very quickly. Many professional software developers and professors use vim every day. You should read this chapter if you use vim.
+
 At the time of writing, perhaps the most feature complete vim-git
 plugin is Tim Pope’s “vim-fugitive.” Consequently, we will assume
 usage of this plugin throughout the entire vim workflows tutorial.
@@ -538,9 +542,10 @@ simply add the line
 \]
 to your vimrc and run the \code{PluginInstall} command.
 
+% TODO(Evan) rephrase
 \section{Easy git blame}
-You’re browsing some file and discover a horrible bug written by one
-of your coworkers. You’re about to storm over to someone’s desk and
+You're browsing some file and discover a horrible bug written by one
+of your coworkers. You're about to storm over to someone’s desk and
 verbally abuse them for producing incorrect code. Before you deliver
 your diatribe, you need to know who to blame.
 
@@ -553,7 +558,7 @@ keybinding to do this for you! What was once several lines of typing
 is now a single keystroke away! Your coworkers have never been so
 scared\ldots
 
-% TODO Evan will finish this in a later draft
+% TODO(Evan) will finish this in a later draft
 \chapter{Emacs Integration}
 
 Similarly to vim-fugitive for vim, “Magit” is (at the time of
