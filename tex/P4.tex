@@ -542,27 +542,36 @@ simply add the line
 \]
 to your vimrc and run the \code{PluginInstall} command.
 
-% TODO(Evan) rephrase
-\section{Easy git blame}
+\section*{Using vim-fugitive}
+\texttt{vim-fugitive} provides a number of functions that wrap common
+command line \texttt{git} commands. All of these can be mapped to a
+keybinding of your choosing.
 
-When browsing a larger codebase, \code{git blame} can be
-very helpful.
+\begin{itemize}
+\item \code{Glame} opens a vertical split immediately to the left of
+  your source code showing the output of \code{git blame}. \code{git
+    blame} can be very helpful when browsing a larger codebase,
 
-A naive solution might first exit vim, manually type “\code{git blame
- <filename>},” then search for the relevant line in the resulting
-output.
+  A naive solution might first exit vim, manually type “\code{git
+    blame <filename>},” then search for the relevant line in the
+  resulting output.
 
-\texttt{vim-fugitive} provides an easy way to run \code{git blame}; we
-simply type \code{:Glame} in normal mode. This function can be bound
-to a keybinding of your choosing. \code{Glame} opens a vertical split
-immediately to the left of your source code.
+\item \code{Ggrep} corresponds to \code{git grep}, a common way to
+  search large codebases for keywords. The output opens in another
+  buffer, which the authors finds more useful than a separate
+  \texttt{tmux} split.
+
+\item \code{Gread} is similiar to \code{git checkout -- <file>}, but
+  \code{Gread} operates on a buffer rather than a file. You can use
+  \code{u} to undo \code{Gread}, which the authors finds much cleaner
+  than dealing with various warnings external to vim.
+\end{itemize}
 
 % TODO(Evan) will finish this in a later draft
 \chapter{Emacs Integration}
 
-Similarly to vim-fugitive for vim, “Magit” is (at the time of
-writing), the most feature-complete git wrapper for emacs. We will
-thus assume usage of this package.
+At the time of writing, \code{Magit} is the most feature-complete git
+wrapper for emacs. We will thus assume usage of this package.
 
 \section{Installing Magit}
 Perhaps the easiest way to install is through MELPA. Just run
@@ -571,7 +580,29 @@ Perhaps the easiest way to install is through MELPA. Just run
 \]
 
 \section{Using Magit}
-We only have space to cover the basics of git usage in magit, but
-here’s a general outline:
+\code{Magit}'s interface is extensive, so cover merely the basics
+here. In this section, we adopt the typical \texttt{emacs} key stroke
+notation.
+
+\begin{itemize}
+\item \code{M-x magit-status RET} opens an interface buffer. \code{n} moves to
+  the next item, \code{p} moves to the previous itme. Press
+  \code{<TAB>} to expand the selected file. This will open the diff of
+  that file.
+    
+  In the file diff view, \code{git add -p} functionality is readily
+  available. Simply while cursor'd over a part of the diff, type
+  \code{s} to stage this chunk of the diff.
+
+  When the appropriate chunks have been staged, press \code{c} to
+  commit and \code{P} to push.
+  
+\item \code{M-x magit-log RET master RET} displays an interface log of
+  the git repository. \code{magit-log} presents a similar tree
+  structure as \code{magit-status}. \code{n}, \code{p}, and
+  \code{<TAB>} are used similarly for navigation.
+\end{itemize}
+
+\code{q} exits almost any screen in \code{magit}.
 
 \end{document}
