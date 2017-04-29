@@ -320,21 +320,20 @@ In git, branching is used to keep track of the different paths of development fo
 
 \section{Creating branches}
 
-To create a new branch (for example if you want a new branch named addfeature):
+To create a new branch (for example if you want a new branch named add\_feature):
 \begin{blockcode}
 $ git branch add_feature
 \end{blockcode}
   
 This creates a new branch in the “development tree”.  Now you can work on this branch of the project without effecting the master branch.
 
-
-As the figure above shows, branching creates a separate flow.  Now in order to bring your current local state to that branch you will have to check it out by:
+Now in order to bring your current local state to that branch you will have to check it out by:
 
 \begin{blockcode}
 $ git checkout add_feature
 \end{blockcode}  
 
-Now the changes you make will be modifying this new branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than addfeature.
+The changes you make will be modifying the add\_feature branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than add\_feature.
 
 Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
 
@@ -344,7 +343,7 @@ A simple shortcut is to run:
 $ git checkout -b add_feature
 \end{blockcode}  
 
-Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
+This will create and checkout the new branch add\_feature in one step.
 
 Now when you are done with development you can delete your branch by using:
 
@@ -352,23 +351,19 @@ Now when you are done with development you can delete your branch by using:
 $ git branch -d add_feature
 \end{blockcode}  
 
-If you want to rollback and see the state of your project at some previous point, you can use \code{git log} to look at the commit history and find the commit hash 
-
- 
-
-and use:
+If you want to rollback and see the state of your project at some previous point, you can use \code{git log} to look at the commit history and find the commit hash and use:
 
 \begin{blockcode}
 $ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
 \end{blockcode}  
 
-To checkout the previous commit and see the state of the project at that point.
+This will checkout the previous commit and see the state of the project at that point.
 
 To combine branches, we have two main options: merging and rebasing.
 
 \section{Merging Branches}
 
-Now after working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added.  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
+After working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added.  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
 
 \begin{blockcode}
 $ git checkout master
@@ -378,14 +373,15 @@ And then merging the other branch in by:
 
 \begin{blockcode}
 $ git merge add_feature
-\end{blockcode}  
+\end{blockcode}
+
 This may happen immediately, unless there are conflicts between the two branches that need to be resolved before they can be successfully merged.  By using git status, you can see in which files these conflicts are located.  Then within the files you will find sections of the form:
 
 \begin{blockcode}
 <<<<< HEAD
-stuff in the current branch
+contents of master
 =====
-things in other branch
+conflicting elements in add_feature
 >>>>> add_feature
 \end{blockcode}  
 
@@ -464,11 +460,11 @@ Github is a website that manages git repositories. You can create an account on 
 
 You can use github for a more user-friendly version controlling experience.  Almost everything you can do using the command line can be done using the desktop client.  You can easily select files, read their diffs, and commit them.
  
-
 Using the online interface, you can create repositories, add contributors, and track progress very easily.
 
-The workflow using github usually involves many collaborators who make pull requests to the managers of the repository.
+The workflow using github usually involves many collaborators who make pull requests to the managers of the repository.  Then the manager will approve the pull request, allowing it to merge into the master branch.  Most team collaboration using Github works in this way, making it easy to give feedback and comments on changes before they are finalized and integrated.
 
+The Github Student Development Pack gives many perks including unlimited private repositories as well as discounts on other development tools.  The Development Pack is free for university students.
 
 \section{Easily Reordering Commits}
 
