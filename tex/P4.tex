@@ -174,6 +174,36 @@ OpenBSD
 
 
 \chapter{Getting Started}
+
+\section{Crash course on Console}
+
+Git is best used with command line rather than a graphical interface. Command Line is a text interface to your computer Here we describe how to work with Git on console (Terminal for Mac/Linux users and Command Prompt for Windows users).
+
+\subsection{Windows: Command Prompt}
+
+\includegraphics[width=\textwidth]{cmd}
+
+The Command Prompt is the default command line on Windows. It can be accessed from the start screen. In Command Prompt you can run commands to open files, go to specific folders, and do other tasks.
+
+\subsection{Mac \& Linux: Terminal}
+
+\includegraphics[width=\textwidth]{terminal}
+
+Terminal is the default command line for Mac. It is a Unix-based console which can be accessed from Applications. In Terminal you can run commands to open files, go to specific folders, and do other tasks.
+
+\subsection{Convention}
+
+In the rest of this manual, we will describe commands on the command line to use Git. A console command will be written as follows
+
+\begin{blockcode}
+$ git
+\end{blockcode}
+
+Here the \$ denotes the prompt which shows on the console, prompting you to type in a command. Therefore the command here is \code{git}.
+
+To execute the command, type it in the console (Command Prompt/Terminal) and press Enter. 
+
+
 \section{Initializing Repository}
 
 To make sure you have Git set up, type \code{git} into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
@@ -194,7 +224,9 @@ to read about a specific subcommand or concept.
 \end{blockcode}
 \bigskip
 \noindent
-To start a new repository, first go to type \code{git init} into the console. It should output the following:
+To start using Git, we need to create a Git repository. A Git repository contains all the material that you want to track in your project.
+
+To start a new repository for your current directory, type \code{git init} into the console. It should output the following:
 
 \begin{blockcode}
 $ git init
