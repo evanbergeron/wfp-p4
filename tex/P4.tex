@@ -245,11 +245,11 @@ This creates a \code{./git} directory in your current directory, which consists 
 
 \section{Adding files to version control}
 
-\textbf{Problem}
+\subsection*{Problem}
 
 After you edited or created a file, you want to add it to your git repository so that your git recognizes your changes.
 
-\textbf{Solution}
+\subsection*{Solution}
 
 Use the command:
 
@@ -257,7 +257,7 @@ Use the command:
 
 \code{<pathspec>} is the path to the file you want to add
 
-\textbf{Discussion}
+\subsection*{Discussion}
 
 The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \code{git add} command is used for adding files to the staging environment.
 
@@ -294,11 +294,11 @@ If the file you want to add is not in the working directory, use \code{git add <
 
 \section{Committing changes}
 
-\textbf{Problem}
+\subsection*{Problem}
 
 You are satisfied with changes you made and you want create a commit to record your changes.
 
-\textbf{Solution}
+\subsection*{Solution}
 
 To update local repository, use the command:
 
@@ -311,7 +311,7 @@ To update remote repository, use the commands:
 \code{\$ git push}
 
 
-\textbf{Discussion}
+\subsection*{Discussion}
 
 A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \code{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
 
@@ -356,11 +356,11 @@ $ git push
 
 \section{Reverting changes}
 
-\textbf{Problem}
+\subsection*{Problem}
 
 Once you made some changes but you want to undo the changes.
 
-\textbf{Solution}
+\subsection*{Solution}
 
 \begin{enumerate}
   \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change.
@@ -370,7 +370,7 @@ Once you made some changes but you want to undo the changes.
   \item \code{git reflog}. You used \code{git reset} to undo changes, but now you want redo them. \code{git reflog} recovers your directory's history.
 \end{enumerate}
 
-\textbf{Discussion}
+\subsection*{Discussion}
 
 
 One reason people using git as version control is that it can undo changes easily. When you make a new commit, git stores the status of your repository at that specific moment. In the future, you can go back to an earlier version by going back to the status git stored.
