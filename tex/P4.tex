@@ -179,7 +179,7 @@ OpenBSD
 
 \chapter{Getting Started}
 
-\section{Crash course on Console}
+\section{Crash course on console}
 
 Git is best used with command line interface rather than a graphical interface. Command line interface or console interface is a text interface to your computer. Here we describe how to work with Git on the console (Terminal for Mac/Linux users and Command Prompt for Windows users). We also explain the convention we will be using in this manual to explain Git commands.
 
@@ -209,7 +209,7 @@ Here the \$ denotes the prompt which shows on the console, prompting you to type
 To execute the command, type it in the console (Command Prompt/Terminal) and press Enter. 
 
 
-\section{Initializing Repository}
+\section{Initializing a repository}
 
 To make sure you have Git set up, type \code{git} into your console (Terminal for Mac/Linux users and Command Prompt for Windows users) and the following should show up (the full output has been elided here).
 
@@ -377,7 +377,7 @@ One reason people using git as version control is that it can undo changes easil
 
 \code{git revert <SHA>} command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
 
-\section{Ignoring Files}
+\section{Ignoring files}
 
 \subsubsection*{Problem}
 
@@ -429,6 +429,22 @@ nothing added to commit but untracked files present
 (use "git add" to track)
 \end{blockcode}
 
+\section{Checking Git history}
+
+\subsubsection*{Problem}
+
+You want to rollback and look at the state of your project at some previous point.
+
+\subsubsection*{Solution}
+
+You can use \code{git log} to look at the commit history and find the commit hash and use:
+
+\begin{blockcode}
+$ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
+\end{blockcode}  
+
+This will checkout the previous commit and see the state of the project at that point.
+
 \chapter{Branching}
 
 In git, branching is used to keep track of the different paths of development for your project.  The master branch is the main branch of your project and after features or changes are verified, they are usually added to the master branch of the project.
@@ -465,6 +481,8 @@ $ git checkout -b add_feature
 
 This will create and checkout the new branch add\_feature all in one step.
 
+\section{Deleting branches}
+
 \subsubsection*{Problem}
 
 You are done with development and you want to delete your branch.
@@ -476,21 +494,8 @@ Use the following to delete the branch:
 $ git branch -d add_feature
 \end{blockcode}  
 
-\subsubsection*{Problem}
 
-You want to rollback and look at the state of your project at some previous point.
-
-\subsubsection*{Solution}
-
-You can use \code{git log} to look at the commit history and find the commit hash and use:
-
-\begin{blockcode}
-$ git checkout 1c0191a6a6264f2e90f6905636321fde897b86df
-\end{blockcode}  
-
-This will checkout the previous commit and see the state of the project at that point.
-
-\section{Merging Branches}
+\section{Merging branches}
 
 To combine branches, we have two main options: merging and rebasing.
 
@@ -524,7 +529,7 @@ conflicting elements in add_feature
 
 And you will have to replace these sections with the content you want and then commit the changes to fully process the merge of the two branches.
 
-\section{Rebasing Branches}
+\section{Rebasing branches}
 
 \subsubsection*{Problem}
 
@@ -587,7 +592,7 @@ The initial rebase command changes the root of your \texttt{feature} branch to y
 The final merge of your feature onto master then forwards master's history to match your feature branch as shown above on the right.  As you can see, the history follows a much more linear pattern compared to the branching pattern of a regular merge alone.
 
 \chapter{Intermediate Git}
-\section{Cherry-picking Commits}
+\section{Cherry-picking commits}
 
 \subsubsection*{Problem}
 
@@ -648,7 +653,7 @@ The workflow using github usually involves many collaborators who make pull requ
 
 The Github Student Development Pack gives many perks including unlimited private repositories as well as discounts on other development tools.  The Development Pack is free for university students.
 
-\section{Easily Reordering Commits}
+\section{Easily reordering commits}
 
 \subsubsection*{Problem}
 You need to reorder a couple of commits.
