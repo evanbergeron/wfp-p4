@@ -91,18 +91,18 @@ If you have Windows, one way of installing Git is from this website:
 
 The link should look like the following
 
-\includegraphics[width=0.75\textwidth]{windows-download}
+\includegraphics[width=0.75\textwidth]{windows-download.png}
 
 \noindent
 Once you have downloaded the installation file, you can open it. 
 
 \textit{Note}: On opening the file, your computer may ask you if you want to run this executable file as a security warning. Just click Run to run the file.
 
-\includegraphics[width=0.75\textwidth]{security}
+\includegraphics[width=0.75\textwidth]{security.png}
 
 After the security warnings, the installation window should open up. Just follow the steps to install Git on your computer.
 
-\includegraphics[width=0.75\textwidth]{windows-install}
+\includegraphics[width=0.75\textwidth]{windows-install.png}
 
 \section{For Mac}
 
@@ -112,13 +112,13 @@ If you have Mac, one way of installing Git is from this website
 
 The link downloads the dmg file i.e. disk image on your computer. Open the disk image.
 
-\includegraphics[width=0.75\textwidth]{git-mac-disk}
+\includegraphics[width=0.75\textwidth]{git-mac-disk.png}
 
 You should be able to see the following. Double click the package to install git. It will open up the installation.
 
-\includegraphics[width=0.75\textwidth]{git-mac-pkg}
+\includegraphics[width=0.75\textwidth]{git-mac-pkg.png}
 
-\includegraphics[width=0.75\textwidth]{git-mac}
+\includegraphics[width=0.75\textwidth]{git-mac.png}
 
 Now just follow the steps to install Git on your machine.
 
@@ -181,13 +181,13 @@ Git is best used with command line interface rather than a graphical interface. 
 
 \subsection{Windows: Command Prompt}
 
-\includegraphics[width=\textwidth]{cmd}
+\includegraphics[width=\textwidth]{cmd.png}
 
 The Command Prompt is the default command line on Windows. It can be accessed from the start screen. In Command Prompt you can run commands to open files, go to specific folders, and do other tasks.
 
 \subsection{Mac \& Linux: Terminal}
 
-\includegraphics[width=\textwidth]{terminal}
+\includegraphics[width=\textwidth]{terminal.png}
 
 Terminal is the default command line for Mac. It is a Unix-based console which can be accessed from Applications. In Terminal you can run commands to open files, go to specific folders, and do other tasks.
 
@@ -241,6 +241,20 @@ This creates a \code{./git} directory in your current directory, which consists 
 
 \section{Adding files to version control}
 
+\textbf{Problem}
+
+After you edited or created a file, you want to add it to your git repository so that your git recognizes your changes.
+
+\textbf{Solution}
+
+Use the command:
+
+\code{\$ git add <pathspec>}
+
+\code{<pathspec>} is the path to the file you want to add
+
+\textbf{Discussion}
+
 The staging environment, or sometimes referred as index, is a file that stores information that you want to edit to the git repository. After you have initialized a repository, you may want to add new files to the repository. However, git does not know which files you want to include in the staging environment. \code{git add} command is used for adding files to the staging environment.
 
 For example, after creating a \texttt{test.txt} file in your working directory, you can check the current status using \code{git status} command. You should get the following message:
@@ -276,6 +290,25 @@ If the file you want to add is not in the working directory, use \code{git add <
 
 \section{Committing changes}
 
+\textbf{Problem}
+
+You are satisfied with changes you made and you want create a commit to record your changes.
+
+\textbf{Solution}
+
+To update local repository, use the command:
+
+\code{\$ git commit -m "Message for the commit"}
+
+To update remote repository, use the commands:
+
+\code{\$ git commit -m "Message for the commit"}
+
+\code{\$ git push}
+
+
+\textbf{Discussion}
+
 A commit is a record of what files you have added or changed since the last time you committed changes. Running the command \code{git commit -m "Message for the commit"} creates a new commit for all the changes you have made. The message after you creating the commit should contain relevant information about the changed you made.
 
 For example, if you changed some contents in the file \texttt{index.html} and created a new file \texttt{new.txt}, a commit message should look like something as following:
@@ -307,6 +340,8 @@ $ git commit
 \end{blockcode}
 
 
+If your default text editor is Vim, in order to close Vim, press \code{esc}, then enter \code{":wq"} and press \code{Enter}.
+
 It is worth noting that anything that is still unstaged (files you have created or modified that you haven’t run git add on since you edited them) won’t go into the commit. 
 
 Creating a commit does not change any remote repository. If you are using GitHub, you probably want this commit changes respective contents in the remote repository on GitHub. You can use \code{git push} to update remote repository with committed changes.
@@ -317,17 +352,26 @@ $ git push
 
 \section{Reverting changes}
 
-One reason people using git as version control is that it can undo changes easily. When you make a new commit, git stores the status of your repository at that specific moment. In the future, you can go back to an earlier version by going back to the status git stored.
+\textbf{Problem}
 
-Here are several undo commands and the scenarios for using them:
+Once you made some changes but you want to undo the changes.
+
+\textbf{Solution}
 
 \begin{enumerate}
-  \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change. This command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
+  \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change.
   \item \code{git commit --amend}. You created a new commit but have not pushed it to remote repository. There is a typo in your commit message. This command allows you to retype the commit message.
-  \item \code{git checkout -- <filename>} You want your files to go back to the state in the last commit. \code{git checkout} changes file in the working directory to a state previously recorded by git.
+  \item \code{git checkout -- <filename>} You want your files to go back to the state in the last commit.
   \item \code{git reset <SHA>}. You created several commits but have not pushed them to remote repository. The changes you made in the last commit is horrible and you want to go back to certain commit. \code{git reset} rewinds your repository's history back to the specified \code{<SHA>}.
   \item \code{git reflog}. You used \code{git reset} to undo changes, but now you want redo them. \code{git reflog} recovers your directory's history.
 \end{enumerate}
+
+\textbf{Discussion}
+
+
+One reason people using git as version control is that it can undo changes easily. When you make a new commit, git stores the status of your repository at that specific moment. In the future, you can go back to an earlier version by going back to the status git stored.
+
+\code{git revert <SHA>} command creates a new commit that does the inverse of the given SHA. In other words, it undoes the previous commit by giving opposite changes.
 
 \section{Ignoring Files}
 
@@ -506,7 +550,7 @@ For example, say that you have been working on a separate branch called \texttt{
 
 \begin{figure}[H]
 \center
-\includegraphics[height=2cm]{feature}
+\includegraphics[height=2cm]{feature.png}
 \end{figure}
 
 A regular merge command such as
@@ -517,7 +561,7 @@ $ git merge feature
 would result in the following Git history:
 \begin{figure}[h]
 \center
-\includegraphics[height=2cm]{merge}
+\includegraphics[height=2cm]{merge.png}
 \end{figure}
 
 However, the history shown above has the disadvantage of having multiple paths which can make debugging more difficult.  A more linear history would have commits \texttt{E} and \texttt{F} stacked on top of your friend's commits.  To implement this, run the typical rebase command flow via
@@ -532,8 +576,8 @@ The initial rebase command changes the root of your \texttt{feature} branch to y
 
 \begin{figure}[h]
 \center
-\includegraphics[height=2cm]{rebase}
-\includegraphics[height=2cm]{rebase_merge}
+\includegraphics[height=2cm]{rebase.png}
+\includegraphics[height=2cm]{rebase_merge.png}
 \end{figure}
 
 The final merge of your feature onto master then forwards master's history to match your feature branch as shown above on the right.  As you can see, the history follows a much more linear pattern compared to the branching pattern of a regular merge alone.
@@ -576,14 +620,14 @@ For example, take the hypothetical situation where your most recent commit \text
 
 \begin{figure}[h]
 \center
-\includegraphics[height=2cm]{feature}
+\includegraphics[height=2cm]{feature.png}
 \end{figure}
 
 To apply commit \texttt{E} by itself to the master branch (in green), you would first find the commit-hash of \texttt{E} by running \code{git log} and searching for your commit.  A commit-hash is an string of letters and numbers used to uniquely identify commits.  Afterwards, cherry-picking the commit to master gets your final desired result shown below:
 
 \begin{figure}[h]
 \center
-\includegraphics[height=2cm]{cherrypick}
+\includegraphics[height=2cm]{cherrypick.png}
 \end{figure}
 
 As you can see, commit \texttt{E} through commit \texttt{E'} has been applied to the master branch from your feature branch without merging your entire bug-ridden feature branch to the master branch.  Note that we differentiate \texttt{E} from \texttt{E'} since Git will consider these as two separate and independent commits.
