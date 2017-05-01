@@ -442,7 +442,7 @@ would result in the following Git history:
 \includegraphics[height=2cm]{merge}
 \end{figure}
 
-However, if you want a more linear history, you would ideally want your commits \texttt{E} and \texttt{F} to be stacked on top of your friends commits.  To implement this, run the typical rebase command flow via
+However, the history shown above has the disadvantage of having multiple paths which can make debugging more difficult.  A more linear history would have commits \texttt{E} and \texttt{F} stacked on top of your friend's commits.  To implement this, run the typical rebase command flow via
 \begin{blockcode}
 $ git checkout feature
 $ git rebase master
