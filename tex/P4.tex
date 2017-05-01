@@ -36,6 +36,10 @@
   {\normalfont\sffamily\large\bfseries\color{black}}
   {\thesubsection}{1em}{}
 
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries\color{black}}
+  {\thesubsubsection}{}{}
+
 \newcommand\code[1]{{\color{blue}\texttt{#1}}}
 
 \fvset{%
@@ -331,15 +335,15 @@ Here are several undo commands and the scenarios for using them:
 
 \section{Ignoring Files}
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You have one or more files that you do not want Git to keep track of.
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 Create a \texttt{.gitignore} file at the base of your Git repository containing the paths of all files that you want Git to ignore.
 
-\textbf{Discussion}
+\subsubsection*{Discussion}
 
 Often you will find that in your projects, you will have files in your repository that do not need to be tracked.  These include automatically generated files, larger libraries that are really external dependencies, or system specific files such as the \texttt{.DS\_Store} file in Macs.
 
@@ -387,11 +391,11 @@ In git, branching is used to keep track of the different paths of development fo
 
 \section{Creating branches}
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You want to create a new branch (for example if you want a new branch named add\_feature) to begin developing a new component of your project:
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 Use the command:
 \begin{blockcode}
@@ -405,7 +409,7 @@ Now in order to bring your current local state to that branch you will have to c
 $ git checkout add_feature
 \end{blockcode}  
 
-\textbf{Discussion}
+\subsubsection*{Discussion}
 
 The changes you make will be modifying the add\_feature branch rather than the master branch.  To go back to the master branch you will use the same checkout command with master rather than add\_feature. Note that to checkout a different branch your current changes must be committed or stored away before you can switch.
 
@@ -417,22 +421,22 @@ $ git checkout -b add_feature
 
 This will create and checkout the new branch add\_feature all in one step.
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You are done with development and you want to delete your branch.
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 Use the following to delete the branch:
 \begin{blockcode}
 $ git branch -d add_feature
 \end{blockcode}  
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You want to rollback and look at the state of your project at some previous point.
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 You can use \code{git log} to look at the commit history and find the commit hash and use:
 
@@ -446,11 +450,11 @@ This will checkout the previous commit and see the state of the project at that 
 
 To combine branches, we have two main options: merging and rebasing.
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 After working on these separate branch and adding your new feature, you want to merge this work into your master branch so it will persist and new branches can build upon or use the feature you added. 
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
  This is what merging does.  It takes a branch and “merges” it into another branch.  This can be done by first checking out the branch you want to merge INTO:
 
@@ -478,11 +482,11 @@ And you will have to replace these sections with the content you want and then c
 
 \section{Rebasing Branches}
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You want to merge your changes from your current branch (which we will call \texttt{feature}) to another branch (which we will call \texttt{master}), but you want your Git history to be more linear than the usual \code{git merge} command with your \texttt{feature} branch's changes applied sequentially after \texttt{master}'s history.
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 Update your \texttt{feature} branch's history from \texttt{master} with a \code{git rebase} command by running
 
@@ -498,7 +502,7 @@ $ git checkout master
 $ git merge feature
 \end{blockcode}
 
-\textbf{Discussion}
+\subsubsection*{Discussion}
 
 Rebasing and merging are the two primary ways of combining changes from separate branches with Git.  One primary advantage of rebasing is that the Git history is made more linear which makes it easier to track changes over time.
 
@@ -541,11 +545,11 @@ The final merge of your feature onto master then forwards master's history to ma
 \chapter{Intermediate Git}
 \section{Cherry-picking Commits}
 
-\textbf{Problem}
+\subsubsection*{Problem}
 
 You have several commits on a separate feature branch, but you only want to apply one or more of these commits to another branch instead of applying all commits.
 
-\textbf{Solution}
+\subsubsection*{Solution}
 
 Let \texttt{feature} be the branch with the commit you wish to apply, and \texttt{master} be the branch you want to apply these commits to.
 
@@ -568,7 +572,7 @@ $ git checkout master
 $ git cherry-pick A B C
 \end{blockcode}
 
-\textbf{Discussion}
+\subsubsection*{Discussion}
 
 Cherry-picking is particularly useful when you don't want to apply all changes from a branch to another branch through a merge or rebase, but only want to apply a few specific commits.
 
