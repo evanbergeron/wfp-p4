@@ -650,16 +650,11 @@ The Github Student Development Pack gives many perks including unlimited private
 
 \section{Easily Reordering Commits}
 
-Reordering commits is a common task and can be performed in a single command. 
-A naive workflow for this task might look like
-\begin{badblockcode}
-$ git checkout -b tmp
-$ git checkout master
-$ git reset --hard HEAD~
-$ git cherry-pick tmp
-\end{badblockcode}
+\subsubsection*{Problem}
+You need to reorder a couple of commits.
+\subsubsection*{Solution}
+We can simply say:
 
-This works fine, but there’s a simpler method. We can simply say:
 \begin{blockcode}
 $ git rebase -i HEAD~2
 \end{blockcode}
@@ -670,16 +665,33 @@ lines of
 pick 370e221 Commit one
 pick c342396 Commit two
 \end{blockcode}
-Simply reorder these lines to reorder the commits. Much shorter!
+Simply reorder these lines to reorder the commits.
+
+\subsubsection*{Discussion}
+
+Reordering commits is a common task and can be performed in a single command. 
+A naive workflow for this task might look like
+\begin{badblockcode}
+$ git checkout -b tmp
+$ git checkout master
+$ git reset --hard HEAD~
+$ git cherry-pick tmp
+\end{badblockcode}
+
+This works fine, but there’s a simpler method.
 
 \section{Adding partial files}
-It can sometimes be helpful to stage only part of the changes made to a single file. (Especially if there are two logically different salient tasks). A naive workflow might involve creating separate branches and manually editing files. Instead, we may say:
-
+\subsubsection*{Problem}
+You've changed a file, but only want to stage part of the changes to
+the file.
+\subsubsection*{Solution}
 \begin{blockcode}
 $ git add -p <file>
 \end{blockcode}
 This will bring up an interactive prompt. This prompt will cycle
-through the different areas of the diff. For each section, you will be asked if you want to stage each section. You may hit \code{y} or \code{n} for yes or no.
+through the different areas of the diff. For each section, you will be
+asked if you want to stage each section. You may hit \code{y} or
+\code{n} for yes or no.
 
 Once you're done adding the subset of changes you want to commit, you
 can double-check you have the right changes staged by saying
@@ -688,13 +700,47 @@ $ git diff --cached
 \end{blockcode}
 One everything looks good, simply \code{commit} as normal.
 
+\subsubsection*{Discussion}
+It can sometimes be helpful to stage only part of the changes made to
+a single file. (Especially if there are two logically different
+salient tasks). A naive workflow might involve creating separate
+branches and manually editing files.
+
+
 \section{Git aliases}
-Typing out full commands such as ``\code{git commit}'' and ``\code{git log --oneline}'' can take a lot of time. Git aliases are a useful tool to save yourself commonly typed commands. For instance, we might say
+\subsubsection*{Problem}
+You find yourself frequently typing out the same \code{git} commands
+over and over. You'd like to save yourself some typing.
+
+\subsubsection*{Solution}
+
+Git aliases are a useful tool to save yourself commonly typed
+commands. For instance, we might say
 \begin{blockcode}
 $ git config --global alias.l "log --oneline"
 $ git l
 \end{blockcode}
-to save ourselves typing out ``\code{log --oneline}'' everytime. It is worth spending a couple moments to create a handful of shortcuts.
+to save ourselves typing out ``\code{log --oneline}'' everytime. It is
+worth spending a couple moments to create a handful of shortcuts.
+
+\subsubsection*{Discussion}
+It's worth looking online for more detailed commands to add as
+aliases. For instance, the following command will display a nicely
+formatted ascii graph of all the branches and commits of the
+repository:
+
+\begin{blockcode}
+$ git log --graph --abbrev-commit --decorate --format=format:' 
+  \%C(bold blue)\%h\%C(reset) - \%C(bold green)(\%ar)\%C(reset) 
+  \%C(white)\%s\%C(reset) \%C(dim white)- \%an\%C(reset)\%C(bold yellow)
+  \%d\%C(reset)' --all
+\end{blockcode}
+It would be absurd to type this command out in full each time. The
+author has this command aliased to \code{g}, so he may simply type
+\begin{blockcode}
+$ git g 
+\end{blockcode}
+to achieve the same effect.
 
 \chapter{Vim Integration}
 
