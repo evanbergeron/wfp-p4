@@ -1,0 +1,7 @@
+Feedback from Team Cake (May 1, 2017)
+
+- Page 17: is then-if.  Should be if-then.
+- White-space is too much for sections.  Possibly reduce leading/ending margins for section headers?
+- Dangling / orphans
+- Section naming consistency
+- Left apostraphes should be ` not '
