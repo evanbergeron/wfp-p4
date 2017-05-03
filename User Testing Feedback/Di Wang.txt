@@ -1,0 +1,9 @@
+Feedback from Di Wang (Intermediate):
+
+- There are disconnected few words on start of page 6 and 7, need to respect.
+- Explain <SHA> in “reverting changes” section.
+- Try to make the names of example files consistent.
+- Move the “Collaboration with Github” section to end.
+- Tones in this document is a bit inconsistent
+- The P/S/D structure works well and instructions are overall clear.
+- Good use of visuals in Cherry-picking and Rebasing
