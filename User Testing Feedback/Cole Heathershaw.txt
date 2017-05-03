@@ -1,0 +1,15 @@
+Feedback from Cole Heathershaw (Intermediate):
+
+- Put some warnings (i.e. for deleting branches, implications of deleting a branch)
+- Get rid of 'we'
+- Fix dangling sections
+- "Why use Git" might not be needed (user already knows they want to use Git if they are opening the manual)
+- Maybe shouldn't be named "Git Instruction Manual" (maybe a "Guide").  Manuals are supposed to be in 2nd person.
+- The anecdotes seem to personal for a manual
+- Section 2.2: 'If you have Mac'
+- Dangling sentences without periods when followed by code
+- 3.2, "git init" is shown too late
+- Major: General tone is wrong for a manual: shouldn't be suggestive i.e. "Perhaps", "want", etc.  Be direct.
+- There are a couple grammatical errors (i.e. installing Magit)
+- Merging branches (solution): what is "This"?
+- P/S/D works sometimes, but don't make it a sentence one-liner for problem otherwise it seems redundant with section header
