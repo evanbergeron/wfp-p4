@@ -1,0 +1,15 @@
+Feedback from Riley Xu (Intermediate):
+
+- Explain the difference between rebasing and merging more clearly
+- Emphasize that switching branches the changes made to current branch are
+  reverted
+- Specify when to delete branches and when to merge them
+- Good use of graphics and Visuals
+- Fix grammatical errors
+- Include a cheatsheet at the end i.e. a list of common git commands and
+  references to them in the manual
+- More detail needed in git add (e.g. git add ., git add -A)
+- Did not introduce Git commit hashes, therefore the section on reverting 
+  changes and git history can be confusing to readers
+- In the images in installation section, zoom in on the relevant section
+- It was unclear how to actually make a Git alias
