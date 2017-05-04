@@ -1,0 +1,10 @@
+Feedback:
+(User is quite unfamiliar with Terminal usage)
+
+- Document is very long
+- Was typing the commands without strong understand of what was actually being done
+  - The Problem/Solution/Discussion should help because it tells you exactly what problem each command is addressing
+- A section on how to use the document would be helpful
+- More visuals besides just the graphs of project structure
+- Leave out some of the in depth technical discussion
+- More consistency in descriptions and voice/tone
