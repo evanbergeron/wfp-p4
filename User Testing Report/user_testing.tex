@@ -1,38 +1,50 @@
-% You should title the file with a .tex extension (hw1.tex, for example)
-\documentclass[11pt]{article}
+\documentclass[12pt]{letter}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1.6in]{geometry}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{tabularx}
+\usepackage[scaled=.90]{helvet}
+\usepackage[parfill]{parskip}
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{graphicx}
-\usepackage{listings}
+\newcounter{section}
+\newcounter{subsection}[section]
+\setcounter{secnumdepth}{3}
+\makeatletter
+\newcommand\section{\@startsection{section}{1}{\z@}%
+                                   {-2.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\textsf}}
+\newcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-2.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\textsf}}
+\renewcommand\thesection{\@arabic\c@section}
+\renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
+\makeatother
 
-\oddsidemargin0cm
-\topmargin-2cm     %I recommend adding these three lines to increase the 
-\textwidth16.5cm   %amount of usable space on the page (and save trees)
-\textheight23.5cm  
-
-\newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
-\noindent{\bf #1: #2} \vspace{0.5em}
-\hrule \vspace{.10in}}
-\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
-
-\DeclareMathOperator{\tr}{trace}
-\DeclareMathOperator{\E}{\mathbf{E}}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt plus 1pt}
-
-\title{Git User Testing Report}
-\author{Evan Bergeron\\
-Frederick Lee\\
-Ziyang Wang\\
-Sunny Gakhar\\
-Nishad Gothoskar}
+% LMAO "address"
+\address{%
+  \textsf{User Testing Report}\\
+  {To: Ana Leighe Cooke}\\
+  {From: Team Git}
+}
 
 \begin{document}
-\maketitle
+\begin{letter}{Professor Cooke,}%
+
+\opening{}
+
+The purpose of this memo is to cover the objectives, users, tasks, and results of our user testing.
+
+\section*{Objectives}
+
+Our intended goal is for our manual to be primarily used as an introduction the basics of version control with Git for beginners.  Our secondary goal is for our manual to serve as a quick reference for Git commands for intermediate to advanced users.
+
+Our user tests were split between two groups: beginner and intermediate users of Git.  Our objective with the beginner group was to test the immediate use of our manual for someone with little to no knowledge of Git.  Our objective for the intermediate group was to test how useful our manual would serve as a quick reference.
+
+\section*{Test Subjects and Testing Procedure}
+
 
 \section*{User Testing Overview}
 
@@ -105,4 +117,7 @@ Riley mentioned the following:
 
 \subsection*{George Situ}
 
+\section{Revisions}
+
+\end{letter}
 \end{document}
