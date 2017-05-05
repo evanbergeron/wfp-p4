@@ -1,0 +1,6 @@
+5-7hrs learning vim-fugitive and magit.
+1-2hrs writing initial draft.
+2-3hrs formatting document
+0-1hrs creating github repo
+1-2hrs revising writing and formatting
+0-1hrs discussing project in-class
