@@ -53,15 +53,18 @@ Furthermore, we found that in practice explaining Git's version history through 
 
 \section*{Verbal Strategies}
 
-\subsection*{Document Organzation}
+\subsection*{Facilitating Random-Access-Reading via Sectioning}
 
 After our first draft, we changed our document to be organization into very specific, well defined sections.  The main reason for doing so was that given our document is quite long and not necessarily meant to be read all at once, a user should be able to consult the table of contents to address a specific problem and find the corresponding section.  Whereas before we had a section on Branching, now we have sections on Making Branches, Deleting Branches, etc.
 
-Now in terms of order, we had an Introduction that introduced the document as well as git.  This section is critical to users with little familiarity with the topic.  Our user tests showed us that inexperienced users were confused by the documents and instructions.  Then we proceed to installation which covers all possible platforms.  With that, we move on to describe the various procedures in Git and they are presented in an order that they will be used in (initializing a repository, making changes, committing the changes)  Finally, we conclude with intermediate to advanced use cases of Git.  We make it clear that these operations aren't necessary to learn but we reserved a section for them at the end.
+\subsection*{Audience Adaptation}
 
-TODO audience adaptation (intro / intermediate accomodation)
+The guide is written for introductory and intermediate Git users. It is possible that our introductory users have never used Git before. Therefore, we included detailed instructions on how to install and set up Git. The commands introduced in the Getting Started section is organized in an order of how introductory users should use them. In each section, we give clear instructions on what to type in terminal (command line) and what message Git will return to help users cross validate. For intermediate users, they may want to skip the first half of the guide. The table of contents at the beginning of the guide allows them to directly access the contents that they are interested in. Since the guide is only for introductory and intermediate Git users, we did not include everything that Git offers. In addition, for most commands that we include, we avoid talking about all possible flags to keep the guide concise. Although the guide does not include every possible command, it is more than enough for basic version control. One place we imaged it will be helpful is hackathon, and this guide is sufficient for hackathon participants to collaborate with Git.
 
-TODO document organization (sections, subsections)
+\subsection*{Adapting to Skill Levels via Document Ordering}
+Now in terms of order, we had an Introduction that introduced the document as well as Git.  This section is critical to users with little familiarity with the topic.  Our user tests showed us that inexperienced users were confused by the documents and instructions.  Then we proceed to installation which covers all possible platforms.  With that, we move on to describe the various procedures in Git and they are presented in an order that they will be used in (initializing a repository, making changes, committing the changes).  Finally, we conclude with intermediate to advanced use cases of Git.  We make it clear that these operations aren't necessary to learn but we reserved a section for them at the end.
+
+\subsection*{Separating Reading-To-Do from Reading-To-Learn}
 
 Another strategy we incorporated was the use of the Problem, Solution, and Discussion subsections.  Our original document faced issues where readers would have to read the entirety of a section in order to understand what was required to accomplish their required task.  This did not facilitate the random-access-reading that we envisioned for this manual.  Furthermore, our document often combined both reading-to-do and reading-to-learn in this manner.  As such, the choice to break down each section into these three subsections separated reading-to-do to the Problem and Solution sections while reading-to-learn was left to the Discussion section.  Thus, if a reader wished to quickly look up a command for a particular situation, they would simply find the respective section, check if the problem description matches their situation, and apply the solution.  If they wished to get a better understanding of the command, the Discussion section would go into more detail on the under-workings of the command.
 
