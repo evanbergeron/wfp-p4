@@ -1,0 +1,76 @@
+% You should title the file with a .tex extension (hw1.tex, for example)
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\oddsidemargin0cm
+\topmargin-2cm     %I recommend adding these three lines to increase the 
+\textwidth16.5cm   %amount of usable space on the page (and save trees)
+\textheight23.5cm  
+
+\newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
+\noindent{\bf #1: #2} \vspace{0.5em}
+\hrule \vspace{.10in}}
+\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
+
+\DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\E}{\mathbf{E}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+
+\title{Git User Testing Report}
+\author{Evan Bergeron\\
+Frederick Lee\\
+Ziyang Wang\\
+Sunny Gakhar\\
+Nishad Gothoskar}
+
+\begin{document}
+\maketitle
+
+\section*{User Testing Overview}
+
+We targetted individuals that were either new to or experienced with Git.  The reason for this is that we envision our manual primary usage to be an introduction to the basics of Git for beginners as well as a quick reference for Git commands for intermediate to advanced users.
+
+The reason we chose the coaching method for beginners is to better simulate a first-time experience with using Git.  Beginners will be handed a computer with a directory with several files and a list of tasks to accomplish.  The manual will be available as their primary source of help.
+
+The think-aloud protocol is better for getting feedback from more experienced users since they can read the instructions and simultaneously compare it to their previous experience using and learning Git.
+
+\subsection*{Intended user testers}
+
+\begin{center}
+\begin{tabular}{llll}
+User & Level & Method & Contributor\\
+\hline
+Tim Becker & intermediate & coaching & Evan\\
+Cole Heathershaw & intermediate & think aloud & Fred\\
+Riley Xu & intermediate & think aloud & Sunny\\
+Xinni Wu & beginner & coaching & Ziyang\\
+Di Wong & intermediate & think aloud & Ziyang\\
+George Situ & beginner & coaching & Nishad\\
+\end{tabular}
+\end{center}
+
+We plan on testing the whole draft on our users, since it is attended to be modularized for easier skimming with users being able to pick out sections that they need at the time.
+
+\section*{Individual User Feedback}
+
+\subsection*{Tim Becker}
+
+\subsection*{Cole Heathershaw}
+
+\subsection*{Riley Xu}
+
+\subsection*{Xinni Wu}
+
+\subsection*{Di Wong}
+
+\subsection*{George Situ}
+
+\end{document}
