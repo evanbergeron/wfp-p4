@@ -1,27 +1,52 @@
-\documentclass{article}
+\documentclass[12pt]{letter}
 \usepackage{amsmath, amssymb}
+\usepackage[margin=1.6in]{geometry}
 \usepackage{fancyvrb}
 \usepackage{color}
+\usepackage{tabularx}
+\usepackage[scaled=.90]{helvet}
+\usepackage[parfill]{parskip}
 
-\title{Group Rhetorical Analysis Memo}
-\author{Evan Bergeron\\
-Frederick Lee\\
-Ziyang Wang\\
-Sunny Gakhar\\
-Nishad Gothoskar}
+\newcounter{section}
+\newcounter{subsection}[section]
+\setcounter{secnumdepth}{3}
+\makeatletter
+\newcommand\section{\@startsection{section}{1}{\z@}%
+                                   {-2.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\textsf}}
+\newcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-2.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\textsf}}
+\renewcommand\thesection{\@arabic\c@section}
+\renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
+\makeatother
+
+% LMAO "address"
+\address{%
+  \textsf{Rhetorical Analysis Memo}\\
+  {To: Ana Leighe Cooke}\\
+  {From: Team git}
+}
 
 \begin{document}
-\maketitle
+\begin{letter}{Professor Cooke,}%
+
+\opening{}
 
 The purpose of this memo is to identify, articulate, and justify our
 visual and verbal strategies while writing and revising our project 4.
 
-\section{Visual Strategies}
+\section*{Visual Strategies}
 
-\subsection{Code Emphasis}
+We employed a number of visual strategies to aid reading.
+
+\subsection*{Code Emphasis}
 
 We chose to make inline code and block-style code chunks both
 blue, in order to clearly distinguish between code and prose.
 
-\section{Verbal Strategies}
+\section*{Verbal Strategies}
+\end{letter}
 \end{document}
