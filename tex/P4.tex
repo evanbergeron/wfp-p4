@@ -364,7 +364,7 @@ Once you made some changes but you want to undo the changes.
 \subsection*{Solution}
 
 \begin{enumerate}
-  \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change.
+  \item \code{git revert <SHA>}. You have used \code{git push} to change your remote repository, but want to undo the change. You can get the commit hash \code{<SHA>} by \code{git log -n 1}.
   \item \code{git commit --amend}. You created a new commit but have not pushed it to remote repository. There is a typo in your commit message. This command allows you to retype the commit message.
   \item \code{git checkout -- <filename>} You want your files to go back to the state in the last commit.
   \item \code{git reset <SHA>}. You created several commits but have not pushed them to remote repository. The changes you made in the last commit is horrible and you want to go back to certain commit. \code{git reset} rewinds your repository's history back to the specified \code{<SHA>}.
